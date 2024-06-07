@@ -21,6 +21,18 @@ with st.sidebar:
         default_index=0,
     )
 
+# Helper function for sine-cosine encoding
+def sin_cos_encode(latitude, longitude, month, week_no, max_week_val):
+    latitude_sin = np.sin(np.radians(latitude))
+    latitude_cos = np.cos(np.radians(latitude))
+    longitude_sin = np.sin(np.radians(longitude))
+    longitude_cos = np.cos(np.radians(longitude))
+    month_sin = np.sin(2 * np.pi * (month / 12))
+    month_cos = np.cos(2 * np.pi * (month / 12))
+    week_no_sin = np.sin(2 * np.pi * (week_no / max_week_val))
+    week_no_cos = np.cos(2 * np.pi * (week_no / max_week_val))
+    return np.array([latitude_sin, longitude_sin, latitude_cos, longitude_cos, week_no_sin, week_no_cos, month_sin, month_cos])
+
 # Home Page
 if selected == "Home":
     st.title('Welcome to the CO2 Emission Prediction App')
@@ -47,11 +59,16 @@ elif selected == "Predict Emissions":
     scaler_path = os.path.join(working_dir, scaler_file)
     with open(scaler_path, 'rb') as f:
         scaler = pickle.load(f)
-        
+
+    # Maximum week value (should be derived from your training data)
+    max_week_val = 53
+
     # Preprocessing functions
-    def preprocess_input(latitude, longitude, year, week_no, scaler):
-        # Transform input data using the loaded scaler
-        input_data = np.array([[float(latitude), float(longitude), int(year), int(week_no)]])
+    def preprocess_input(latitude, longitude, year, month, week_no, scaler, max_week_val):
+        # Transform input data using the sine-cosine encoding
+        encoded_input = sin_cos_encode(float(latitude), float(longitude), int(month), int(week_no), max_week_val)
+        year_int = int(year) - 2019
+        input_data = np.concatenate(([year_int], encoded_input)).reshape(1, -1)
         scaled_data = scaler.transform(input_data)
         return scaled_data
 
@@ -65,6 +82,8 @@ elif selected == "Predict Emissions":
     with col1:
         year = st.text_input('Year')
     with col2:
+        month = st.text_input('Month')
+    with col1:
         week_no = st.text_input('Number of week')
 
     # Code for prediction
@@ -73,8 +92,9 @@ elif selected == "Predict Emissions":
     # Creating a button for Prediction
     if st.button('Predict'):
         try:
-            user_input = preprocess_input(latitude, longitude, year, week_no, scaler)
+            user_input = preprocess_input(latitude, longitude, year, month, week_no, scaler, max_week_val)
             emission_predict = emission_model.predict(user_input)
+            emission_predict = np.power(emission_predict, 3)  # Transform back the prediction
             st.success(f'Predicted CO2 Emission: {emission_predict[0]}')
         except ValueError as e:
             st.error(f"Invalid input: {e}")
