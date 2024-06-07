@@ -48,29 +48,26 @@ elif selected == "Predict Emissions":
     # Getting the working directory of the emission_app.py
     working_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Loading the saved models
-    model_file = 'emission_model.sav'
-    model_path = os.path.join(working_dir, model_file)
-    with open(model_path, 'rb') as f:
-        emission_model = pickle.load(f)
-
-    # Loading the saved scaler
-    scaler_file = 'scaler.sav'
-    scaler_path = os.path.join(working_dir, scaler_file)
-    with open(scaler_path, 'rb') as f:
-        scaler = pickle.load(f)
+    # Load the model
+    try:
+        model_file = 'emission_model.sav'
+        model_path = os.path.join(working_dir, model_file)
+        with open(model_path, 'rb') as f:
+            emission_model = pickle.load(f)
+        st.success("Model loaded successfully.")
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
 
     # Maximum week value (should be derived from your training data)
     max_week_val = 53
 
     # Preprocessing functions
-    def preprocess_input(latitude, longitude, year, month, week_no, scaler, max_week_val):
+    def preprocess_input(latitude, longitude, year, month, week_no, max_week_val):
         # Transform input data using the sine-cosine encoding
         encoded_input = sin_cos_encode(float(latitude), float(longitude), int(month), int(week_no), max_week_val)
         year_int = int(year) - 2019
         input_data = np.concatenate(([year_int], encoded_input)).reshape(1, -1)
-        scaled_data = scaler.transform(input_data)
-        return scaled_data
+        return input_data
 
     # Getting the input data from the user
     col1, col2 = st.columns(2)
@@ -92,7 +89,7 @@ elif selected == "Predict Emissions":
     # Creating a button for Prediction
     if st.button('Predict'):
         try:
-            user_input = preprocess_input(latitude, longitude, year, month, week_no, scaler, max_week_val)
+            user_input = preprocess_input(latitude, longitude, year, month, week_no, max_week_val)
             emission_predict = emission_model.predict(user_input)
             emission_predict = np.power(emission_predict, 3)  # Transform back the prediction
             st.success(f'Predicted CO2 Emission: {emission_predict[0]}')
