@@ -3,6 +3,7 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 import numpy as np
+import pandas as pd
 
 # Set page configuration
 st.set_page_config(
@@ -22,15 +23,17 @@ with st.sidebar:
     )
 
 # Helper function for sine-cosine encoding
-def sin_cos_encode(latitude, longitude, month, week_no, max_week_val):
+def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
     latitude_sin = np.sin(np.radians(latitude))
     latitude_cos = np.cos(np.radians(latitude))
     longitude_sin = np.sin(np.radians(longitude))
     longitude_cos = np.cos(np.radians(longitude))
+    
     month_sin = np.sin(2 * np.pi * (month / 12))
     month_cos = np.cos(2 * np.pi * (month / 12))
     week_no_sin = np.sin(2 * np.pi * (week_no / max_week_val))
     week_no_cos = np.cos(2 * np.pi * (week_no / max_week_val))
+    
     return np.array([latitude_sin, longitude_sin, latitude_cos, longitude_cos, week_no_sin, week_no_cos, month_sin, month_cos])
 
 # Home Page
@@ -45,14 +48,10 @@ if selected == "Home":
 elif selected == "Predict Emissions":
     st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
 
-    # Getting the working directory of the emission_app.py
-    working_dir = os.path.dirname(os.path.abspath(__file__))
-
     # Load the model
     try:
         model_file = 'emission_model.sav'
-        model_path = os.path.join(working_dir, model_file)
-        with open(model_path, 'rb') as f:
+        with open(model_file, 'rb') as f:
             emission_model = pickle.load(f)
         st.success("Model loaded successfully.")
     except Exception as e:
@@ -62,9 +61,13 @@ elif selected == "Predict Emissions":
     max_week_val = 53
 
     # Preprocessing functions
-    def preprocess_input(latitude, longitude, year, month, week_no, max_week_val):
+    def preprocess_input(latitude, longitude, year, week_no, max_week_val):
+        # Calculate the date from year and week_no
+        date = pd.to_datetime(f"{year}-01-01") + pd.to_timedelta(int(week_no) * 7, unit="d")
+        month = date.month
+
         # Transform input data using the sine-cosine encoding
-        encoded_input = sin_cos_encode(float(latitude), float(longitude), int(month), int(week_no), max_week_val)
+        encoded_input = sin_cos_encode(float(latitude), float(longitude), int(week_no), month, max_week_val)
         year_int = int(year) - 2019
         input_data = np.concatenate(([year_int], encoded_input)).reshape(1, -1)
         return input_data
@@ -79,8 +82,6 @@ elif selected == "Predict Emissions":
     with col1:
         year = st.text_input('Year')
     with col2:
-        month = st.text_input('Month')
-    with col1:
         week_no = st.text_input('Number of week')
 
     # Code for prediction
@@ -89,7 +90,7 @@ elif selected == "Predict Emissions":
     # Creating a button for Prediction
     if st.button('Predict'):
         try:
-            user_input = preprocess_input(latitude, longitude, year, month, week_no, max_week_val)
+            user_input = preprocess_input(latitude, longitude, year, week_no, max_week_val)
             emission_predict = emission_model.predict(user_input)
             emission_predict = np.power(emission_predict, 3)  # Transform back the prediction
             st.success(f'Predicted CO2 Emission: {emission_predict[0]}')
