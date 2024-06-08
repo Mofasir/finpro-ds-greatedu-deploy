@@ -22,7 +22,7 @@ st.set_page_config(
 with st.sidebar:
     selected = option_menu(
         menu_title="Main Menu",
-        options=["Home", "Data Description", "Analytics","Predict Emissions", "About"],
+        options=["Home", "Data Description", "Analytics","Predict Emissions", "About Us"],
         icons=["house", "clipboard", "graph-up", "cloud", "people"],
         menu_icon="cast",
         default_index=0,
@@ -45,14 +45,14 @@ def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
 # Home Page
 if selected == "Home":
     # Load the image background
-    image_path = os.path.join(working_dir, "images/background.png")
+    image_path = os.path.join(working_dir, "image/background.png")
     image = Image.open(image_path)
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
     img_str = base64.b64encode(buffered.getvalue()).decode()
 
     # Load the image logo
-    image_path = os.path.join(working_dir, "images/logo.png")
+    image_path = os.path.join(working_dir, "image/logo.png")
     image = Image.open(image_path)
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
@@ -128,13 +128,12 @@ if selected == "Home":
             <div class="title">
                 <h1>Predict CO2 Emissions in Rwanda</h1>
             </div>
-            <div class="kumlogo"></div>
+            <div class="logo"></div>
         </div>
         <hr style="margin: 20px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
             <div class="description">
               <div class = "fotodas">
-                <div class ="air"></div>
                 <p class = "des">Pentingnya kualitas air dalam menjaga keberlanjutan lingkungan dan kesehatan masyarakat telah menjadi perhatian utama di seluruh dunia. 
                 Air adalah aset berharga yang tidak dapat digantikan, namun sering kali terpapar oleh berbagai faktor, mulai dari polusi industri hingga limbah domestik. 
                 Dalam menghadapi tantangan ini, perlu adanya upaya untuk mengembangkan sistem prediktif yang mampu memantau dan mengukur kualitas air secara akurat. 
@@ -195,11 +194,18 @@ if selected == "Home":
     </div>
     """, unsafe_allow_html=True)
     
-    st.title('Welcome to the CO2 Emission Prediction App')
     st.markdown("""
     This application predicts CO2 emissions using machine learning models trained on open-source emissions data.
     Explore the app to predict emissions for different locations and time periods.
     """)
+
+# Data Description Page
+elif selected == "Data Description":
+    st.title('Data Description')
+
+# Analytics Page
+elif selected == "Analytics":
+    st.title('Analytics')
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
@@ -207,7 +213,7 @@ elif selected == "Predict Emissions":
 
     # Load the model
     try:
-        model_file = 'emission_model.sav'
+        model_file = 'saved_model/emission_model.sav'
         with open(model_file, 'rb') as f:
             emission_model = pickle.load(f)
         st.success("Model loaded successfully.")
@@ -215,7 +221,7 @@ elif selected == "Predict Emissions":
         st.error(f"Error loading the model: {e}")
 
     # Maximum week value (should be derived from your training data)
-    max_week_val = 53
+    max_week_val = 52
 
     # Preprocessing functions
     def preprocess_input(latitude, longitude, year, week_no, max_week_val):
@@ -235,9 +241,9 @@ elif selected == "Predict Emissions":
     with col1:
         latitude = st.text_input('Coordinate of Latitude')
     with col2:
-        longitude = st.text_input('Coordinate of Longitude')
-    with col1:
         year = st.text_input('Year')
+    with col1:
+        longitude = st.text_input('Coordinate of Longitude')
     with col2:
         week_no = st.text_input('Number of week')
 
@@ -255,8 +261,8 @@ elif selected == "Predict Emissions":
             st.error(f"Invalid input: {e}")
 
 # About Page
-elif selected == "About":
-    st.title("About This App")
+elif selected == "About Us":
+    st.title("About Us")
     st.markdown("""
     This application uses machine learning models to predict CO2 emissions based on satellite data.
     The model was trained using data from Sentinel-5P satellite observations.
