@@ -73,10 +73,7 @@ if selected == "Home":
             justify-content: space-between;
         }}  
         .logo {{
-            margin-top: 20px;
             background-image: url("data:image/jpeg;base64,{img_str1}");
-            background-size: contain;
-            background-repeat: no-repeat;
         }}
         .main-content {{
             display: flex;
@@ -123,7 +120,7 @@ if selected == "Home":
     """
         <div class="header">
             <div class="title">
-                <h1>Predict CO2 Emissions in Rwanda</h1>
+                <h1>Predict CO2</h1>
             </div>
             <div class="logo"></div>
         </div>
