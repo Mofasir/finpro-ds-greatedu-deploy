@@ -73,8 +73,8 @@ if selected == "Home":
             justify-content: space-between;
         }}  
         .logo {{
-            width: 100px;
-            height: 20px;
+            width: 300px;
+            height: 100px;
             background-image: url("data:image/png;base64,{img_str1}");
             background-size: contain;
             background-repeat: no-repeat;
