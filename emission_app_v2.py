@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 # Getting the working directory of the emission_app.py
-    working_dir = os.path.dirname(os.path.abspath(__file__))
+working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Sidebar menu
 with st.sidebar:
