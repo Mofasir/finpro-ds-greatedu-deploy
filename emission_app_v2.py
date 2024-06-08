@@ -4,6 +4,7 @@ import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
 from PIL import Image
+import base64
 import plotly.express as px
 import numpy as np
 import pandas as pd
