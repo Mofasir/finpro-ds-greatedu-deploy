@@ -73,14 +73,10 @@ if selected == "Home":
             justify-content: space-between;
         }}  
         .logo {{
-            display: flex;
-            background-position: center;
             margin-top: 20px;
             background-image: url("data:image/jpeg;base64,{img_str1}");
             background-size: contain;
             background-repeat: no-repeat;
-            width: auto;
-            height: auto;
         }}
         .main-content {{
             display: flex;
