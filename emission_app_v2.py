@@ -182,8 +182,16 @@ if selected == "Home":
 # Data Description Page
 elif selected == "Data Description": 
     st.title('Data Description')
+    st.markdown(
+        f"""
+        <style>
+        st.markdown {{
+            text-align: justify;
+        </style>
+        """
+    )
     st.markdown("""
-    Dataset yang digunakan bersumber dari <a href="https://www.kaggle.com/competitions/playground-series-s3e20/data">https://www.kaggle.com/competitions/playground-series-s3e20/data</a>.
+    Dataset yang digunakan bersumber dari https://www.kaggle.com/competitions/playground-series-s3e20/data.
     Dataset ini berisi data emisi sumber terbuka (dari pengamatan satelit Sentinel-5P) untuk memprediksi emisi karbon.
     Sekitar 497 lokasi unik dipilih dari berbagai area di Rwanda, dengan distribusi di sekitar lahan pertanian, kota, dan pembangkit listrik. 
     Data untuk kompetisi ini dibagi berdasarkan waktu tahun 2019 - 2021 termasuk dalam data train, dan tugas kita memprediksi data emisi CO2 untuk tahun 2022 hingga November.<br>
@@ -194,13 +202,13 @@ elif selected == "Data Description":
     Kita akan diberikan nilai fitur-fitur ini dalam set test dan tujuan kita untuk memprediksi emisi CO2 dengan menggunakan informasi waktu serta fitur-fitur ini.
     
     **Fitur Utama:**
-    - Sulphur Dioxide - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2">COPERNICUS/S5P/NRTI/L3_SO2</a>
-    - Carbon Monoxide - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO">COPERNICUS/S5P/NRTI/L3_CO</a>
-    - Nitrogen Dioxide - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2">COPERNICUS/S5P/NRTI/L3_NO2</a>
-    - Formaldehyde - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO">COPERNICUS/S5P/NRTI/L3_HCHO</a>
-    - UV Aerosol Index - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI">COPERNICUS/S5P/NRTI/L3_AER_AI</a>
-    - Ozone - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_O3">COPERNICUS/S5P/NRTI/L3_O3</a>
-    - Cloud - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CLOUD">COPERNICUS/S5P/OFFL/L3_CLOUD</a>
+    - Sulphur Dioxide : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2
+    - Carbon Monoxide : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO
+    - Nitrogen Dioxide : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2
+    - Formaldehyde : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO
+    - UV Aerosol Index : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI
+    - Ozone : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_O3
+    - Cloud : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CLOUD
 
     **Berkas-berkas:**
     - train.csv
