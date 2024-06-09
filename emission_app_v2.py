@@ -95,16 +95,9 @@ if selected == "Home":
             flex: 1;
             padding: 20px;
             border-radius: 10px;
-            background-color: #CBBA99;
+            background-color: #E6E0CD;
             margin-right: 10px;
             width: 100%;
-        }}
-        .benefit {{
-            flex: 1;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #D9FAEE;
-            width: 50%;
         }}
         </style>
         """,
@@ -145,7 +138,7 @@ if selected == "Home":
                 </p>
                 <div style='display: flex; justify-content: space-between; margin-bottom: 20px;'>
                   <div class="objective">
-                    <h6 style="text-align: center; font-weight:bold">Tujuan</h6>
+                    <h6 style="font-weight:bold font-size: 50px">Tujuan</h6>
                     <p style="text-align: justify;">
                         <span><b>1. Model Prediksi</b></span><br>
                         Mengembangkan model machine learning yang mampu memprediksi emisi CO2 untuk setiap minggu dan setiap lokasi di Rwanda.<br>
