@@ -74,8 +74,8 @@ if selected == "Home":
         }}  
         .logo {{
             margin-top: 20px;
-            width: 500px;
-            height: 250px;
+            width: 400px;
+            height: 50px;
             background-image: url("data:image/png;base64,{img_str1}");
             background-size: contain;
             background-repeat: no-repeat;
