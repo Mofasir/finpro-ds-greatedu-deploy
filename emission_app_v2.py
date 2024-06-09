@@ -121,7 +121,6 @@ if selected == "Home":
             display: flex;
             justify-content: space-between;
             border-radius: 10px;
-            margin-top: 20px;
         }}
         .description {{
             border-radius: 10px;
