@@ -238,7 +238,65 @@ elif selected == "Analytics":
 
     df = load_data()
 
+    st.markdown(
+        """
+        **Statictical Summary**
+        """
+    )
     st.dataframe(df.describe(), width=1050)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        train = df
+
+        geo_mean_emission = train.groupby(["latitude", "longitude"]).emission.mean().reset_index()
+        zero_emission = geo_mean_emission[geo_mean_emission.emission == 0]
+        
+        fig = px.scatter_mapbox(
+            geo_mean_emission,
+            lat="latitude",
+            lon="longitude",
+            color="emission",
+            size="emission",
+            color_continuous_scale=px.colors.sequential.Cividis,
+            size_max=30,
+            zoom=7,
+            width=840,
+            height=940,
+            title="Distinct Locations of Data Collection in Rwanda<br>"
+            "<span style='font-size: 75%; font-weight: bold;'>"
+            "Each dot is associated with the mean CO\u2082 emission collected for this place</span>",
+        )
+        fig.add_scattermapbox(
+            lat=zero_emission.latitude,
+            lon=zero_emission.longitude,
+            name="Zero-Emission",
+            marker=dict(color="#228B22", size=15, symbol="circle", opacity=0.75),
+        )
+        fig.update_layout(
+            mapbox_style="open-street-map",
+            margin=dict(r=0, t=90, l=0, b=0),
+            font_color="#4A4B52",
+            title_font_size=18,
+            coloraxis_colorbar=dict(
+                title="Mean Emission",
+                title_side="top",
+                orientation="h",
+                yanchor="bottom",
+                xanchor="center",
+                y=-0.13,
+                x=0.5,
+            ),
+            legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
+            plot_bgcolor="#FFFCFA",
+            paper_bgcolor="#FFFCFA",
+        )
+        
+        # Streamlit code
+        st.set_page_config(layout="wide")
+        st.title("CO2 Emissions in Rwanda")
+        st.plotly_chart(fig, use_container_width=True)
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
