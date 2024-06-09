@@ -338,7 +338,7 @@ elif selected == "Predict Emissions":
 
     # Function to update latitude and longitude fields
     def update_coordinates(click_data):
-        if click_data:
+        if click_data and "points" in click_data and click_data["points"]:
             lat, lon = click_data["points"][0]["lat"], click_data["points"][0]["lon"]
             st.session_state.latitude = lat
             st.session_state.longitude = lon
@@ -347,11 +347,11 @@ elif selected == "Predict Emissions":
     col1, col2 = st.columns(2)
 
     with col1:
-        latitude = st.text_input('Coordinate of Latitude', key="latitude")
+        latitude = st.text_input('Coordinate of Latitude', value=st.session_state.get("latitude", ""), key="latitude")
     with col2:
         year = st.text_input('Year')
     with col1:
-        longitude = st.text_input('Coordinate of Longitude', key="longitude")
+        longitude = st.text_input('Coordinate of Longitude', value=st.session_state.get("longitude", ""), key="longitude")
     with col2:
         week_no = st.text_input('Number of week')
 
@@ -367,7 +367,7 @@ elif selected == "Predict Emissions":
     st.plotly_chart(fig, use_container_width=True)
 
     # Capture click event on map
-    map_click = st.session_state.get("map_click", None)
+    map_click = st.session_state.get("plotly_click", None)
     update_coordinates(map_click)
 
     # Code for prediction
@@ -386,7 +386,7 @@ elif selected == "Predict Emissions":
     # Function to update session state on map click
     @st.experimental_memo
     def update_session_state(click_data):
-        st.session_state["map_click"] = click_data
+        st.session_state["plotly_click"] = click_data
     
     # Update session state on map click
     update_session_state(st.session_state.get("plotly_click", None))
