@@ -292,10 +292,6 @@ elif selected == "Analytics":
             plot_bgcolor="#FFFCFA",
             paper_bgcolor="#FFFCFA",
         )
-        
-        # Streamlit code
-        st.set_page_config(layout="wide")
-        st.title("CO2 Emissions in Rwanda")
         st.plotly_chart(fig, use_container_width=True)
 
 # Predict Emissions Page
