@@ -194,10 +194,11 @@ elif selected == "Data Description":
     )
     st.markdown(
     """
+    <hr style="margin: 5px 0; border-top: 1px solid #ddd;">
     Dataset yang digunakan bersumber dari https://www.kaggle.com/competitions/playground-series-s3e20/data.
     Dataset ini berisi data emisi sumber terbuka (dari pengamatan satelit Sentinel-5P) untuk memprediksi emisi karbon.
     Sekitar 497 lokasi unik dipilih dari berbagai area di Rwanda, dengan distribusi di sekitar lahan pertanian, kota, dan pembangkit listrik. 
-    Data untuk kompetisi ini dibagi berdasarkan waktu tahun 2019 - 2021 termasuk dalam data train, dan tugas kita memprediksi data emisi CO2 untuk tahun 2022 hingga November.<br>
+    Data untuk kompetisi ini dibagi berdasarkan waktu tahun 2019 - 2021 termasuk dalam data train, dan tugas kita memprediksi data emisi CO2 untuk tahun 2022 hingga November.
 
     Tujuh fitur utama diekstraksi setiap minggu dari Sentinel-5P dari Januari 2019 hingga November 2022. 
     Setiap fitur (Sulfur Dioksida, Karbon Monoksida, dll) mengandung sub fitur seperti column_number_density yang merupakan kerapatan kolom vertikal di permukaan tanah, yang dihitung dengan menggunakan teknik DOAS. 
@@ -205,11 +206,11 @@ elif selected == "Data Description":
     Kita akan diberikan nilai fitur-fitur ini dalam set test dan tujuan kita untuk memprediksi emisi CO2 dengan menggunakan informasi waktu serta fitur-fitur ini.
     
     **Fitur Utama:**
-    - Sulphur Dioxide : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2
-    - Carbon Monoxide : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO
-    - Nitrogen Dioxide : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2
-    - Formaldehyde : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO
-    - UV Aerosol Index : "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI
+    - Sulphur Dioxide : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2
+    - Carbon Monoxide : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO
+    - Nitrogen Dioxide : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2
+    - Formaldehyde : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO
+    - UV Aerosol Index : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI
     - Ozone : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_O3
     - Cloud : https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CLOUD
 
@@ -217,7 +218,9 @@ elif selected == "Data Description":
     - train.csv
     - test.csv
     - sample_submission.csv - file contoh pengiriman dalam format yang benar
-    """)
+    """,
+    unsafe_allow_html=True
+    )
 
     st.markdown(
     """
