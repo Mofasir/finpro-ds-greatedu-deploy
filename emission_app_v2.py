@@ -262,7 +262,7 @@ elif selected == "Analytics":
             size_max=30,
             zoom=6,
             width=540,
-            height=340,
+            height=360,
             title=None
         )
         fig.add_scattermapbox(
