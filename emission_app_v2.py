@@ -267,7 +267,7 @@ elif selected == "Analytics":
             size_max=30,
             zoom=5.5,
             width=540,
-            height=320,
+            height=315,
             title="Location in Rwanda"
         )
         fig.add_scattermapbox(
@@ -287,7 +287,7 @@ elif selected == "Analytics":
                 orientation="h",
                 yanchor="bottom",
                 xanchor="center",
-                y=-0.2,
+                y=-0.35,
                 x=0.5,
             ),
             legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
