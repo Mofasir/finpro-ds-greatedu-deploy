@@ -28,7 +28,7 @@ def load_data():
   return data
 
 # Dataset Describe
-def load_data():
+def load_data1():
   dataset_path1 = os.path.join(working_dir, "datasets/train_desc.csv")
   data = pd.read_csv(dataset_path1)
   return data
@@ -223,7 +223,6 @@ elif selected == "Data Description":
     st.dataframe(df, width=1050)
     total_rows = len(df)
     total_columns = len(df.columns)
-    total_rows_formatted = "{:,}".format(total_rows).replace(",", ".")
     st.write(f"Total data terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
 
 # Analytics Page
