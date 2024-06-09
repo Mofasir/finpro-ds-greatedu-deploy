@@ -70,9 +70,7 @@ if selected == "Home":
         }}
         .header {{
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: left;
         }}
         .logo {{
             width: 360px;
@@ -122,12 +120,11 @@ if selected == "Home":
     
     st.markdown(
     """
-
         <div class="header">
             <div class="logo"></div>
-            <div class="title">
-                <h1>Predict CO2 Emission in Rwanda</h1>
-            </div>
+        </div>
+        <div class="title">
+            <h1>Predict CO2 Emission in Rwanda</h1>
         </div>
         <hr style="margin: 5px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
