@@ -268,7 +268,6 @@ elif selected == "Analytics":
             zoom=5.5,
             width=540,
             height=360,
-            title="Distribution of Average CO2 Emissions in Rwanda"
         )
         fig.add_scattermapbox(
             lat=zero_emission.latitude,
@@ -278,7 +277,7 @@ elif selected == "Analytics":
         )
         fig.update_layout(
             mapbox_style="open-street-map",
-            margin=dict(r=0, t=90, l=0, b=0),
+            margin=dict(r=0, t=0, l=0, b=0),
             font_color="#4A4B52",
             title_font_size=14,
             coloraxis_colorbar=dict(
