@@ -249,6 +249,11 @@ elif selected == "Analytics":
         st.dataframe(df.describe(), width=1050)
 
     with col2:
+        st.markdown(
+            """
+            **Distribution of Average CO2 Emissions in Rwanda**
+            """
+        )
         geo_mean_emission = df.groupby(["latitude", "longitude"]).emission.mean().reset_index()
         zero_emission = geo_mean_emission[geo_mean_emission.emission == 0]
             
@@ -263,7 +268,7 @@ elif selected == "Analytics":
             zoom=5.5,
             width=540,
             height=360,
-            title="Distribution of Mean CO2 Emissions in Rwanda"
+            title="Distribution of Average CO2 Emissions in Rwanda"
         )
         fig.add_scattermapbox(
             lat=zero_emission.latitude,
