@@ -142,7 +142,6 @@ if selected == "Home":
     st.title('Predict CO2 Emission in Rwanda')
     st.markdown(
     """
-        <hr style="margin: 5px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
             <div class="description">
                 <p style="text-align: justify;">
@@ -194,7 +193,6 @@ elif selected == "Data Description":
     )
     st.markdown(
     """
-    <hr style="margin: 5px 0; border-top: 1px solid #ddd;">
     Dataset yang digunakan bersumber dari https://www.kaggle.com/competitions/playground-series-s3e20/data.
     Dataset ini berisi data emisi sumber terbuka (dari pengamatan satelit Sentinel-5P) untuk memprediksi emisi karbon.
     Sekitar 497 lokasi unik dipilih dari berbagai area di Rwanda, dengan distribusi di sekitar lahan pertanian, kota, dan pembangkit listrik. 
@@ -218,8 +216,7 @@ elif selected == "Data Description":
     - train.csv
     - test.csv
     - sample_submission.csv - file contoh pengiriman dalam format yang benar
-    """,
-    unsafe_allow_html=True
+    """
     )
 
     st.markdown(
