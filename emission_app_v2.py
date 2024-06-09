@@ -185,7 +185,7 @@ elif selected == "Data Description":
     st.markdown(
         f"""
         <style>
-        .stmarkdown {{
+        .stApp {{
             text-align: justify;
         </style>
         """
