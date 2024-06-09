@@ -57,30 +57,45 @@ buffered = io.BytesIO()
 image.save(buffered, format="PNG")
 img_logo = base64.b64encode(buffered.getvalue()).decode()
 
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/jpeg;base64,{img_bg}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }}
+    .header {{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }}
+    .logo {{
+        margin-top: -40px;
+        width: 360px;
+        height: 80px;
+        background-image: url("data:image/png;base64,{img_logo}");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }}
+    """,
+    unsafe_allow_html=True
+)
+st.markdown(
+    """
+    <div class="header">
+        <div class="logo"></div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # Home Page
 if selected == "Home":
     st.markdown(
         f"""
         <style>
-        .stApp {{
-            background-image: url("data:image/jpeg;base64,{img_bg}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }}
-        .header {{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }}
-        .logo {{
-            margin-top: -40px;
-            width: 360px;
-            height: 80px;
-            background-image: url("data:image/png;base64,{img_logo}");
-            background-size: contain;
-            background-repeat: no-repeat;
-        }}
         .main-content {{
             display: flex;
             justify-content: space-between;
@@ -104,20 +119,9 @@ if selected == "Home":
         unsafe_allow_html=True
     )
 
+    st.title('Predict CO2 Emission in Rwanda')
     st.markdown(
     """
-        <div class="header">
-            <div class="logo"></div>
-        </div>
-    """,
-        unsafe_allow_html=True
-    )
-    
-    st.markdown(
-    """
-        <div class="title">
-            <h1>Predict CO2 Emission in Rwanda</h1>
-        </div>
         <hr style="margin: 5px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
             <div class="description">
@@ -154,53 +158,13 @@ if selected == "Home":
     """, 
     unsafe_allow_html=True
     )
-    
-    # Footer
-    st.markdown("""
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <div style="display: flex; flex-direction: column;">
-        <hr style="border-top: 1px solid #ddd; margin: 10px 0;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
-            <div style="display: flex; align-items: center; font-size: 15px; color: #4C4D50;">
-                <i class="far fa-copyright" style="font-size: 15px; margin-right: 5px;"></i>
-                2024 <span style="margin-left: 2px">PyBoys Group | Data Scientist in GreatEdu | SIB Cycle 6</span>. All Rights Reserved
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
 
 # Data Description Page
 elif selected == "Data Description": 
-    # Set the background image
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/jpeg;base64,{img_bg}");
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     st.title('Data Description')
 
 # Analytics Page
 elif selected == "Analytics":
-    # Set the background image
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/jpeg;base64,{img_bg}");
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     st.title('Analytics')
 
 # Predict Emissions Page
@@ -300,3 +264,18 @@ elif selected == "About Us":
     - Muhammad Asri Alfajri
     - Mohammad Faikar Natsir
     """)
+
+# Footer
+st.markdown("""
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<div style="display: flex; flex-direction: column;">
+    <hr style="border-top: 1px solid #ddd; margin: 10px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+        <div style="display: flex; align-items: center; font-size: 15px; color: #4C4D50;">
+            <i class="far fa-copyright" style="font-size: 15px; margin-right: 5px;"></i>
+            2024 <span style="margin-left: 2px">PyBoys Group | Data Scientist in GreatEdu | SIB Cycle 6</span>. All Rights Reserved
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True
+)
