@@ -69,10 +69,10 @@ if selected == "Home":
             background-repeat: no-repeat;
         }}
         .logo {{
-            justify-content: center;
+            align-items: center;
             margin-top: 20px;
-            width: 300px;
-            height: 50px;
+            width: 360px;
+            height: 80px;
             background-image: url("data:image/png;base64,{img_logo}");
             background-size: contain;
             background-repeat: no-repeat;
@@ -118,8 +118,8 @@ if selected == "Home":
     
     st.markdown(
     """
+        <div class="logo"></div>
         <div class="header">
-            <div class="logo"></div>
             <div class="title">
                 <h1>Predict CO2 Emission in Rwanda</h1>
             </div>
