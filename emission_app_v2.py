@@ -81,7 +81,7 @@ if selected == "Home":
             background-repeat: no-repeat;
         }}
         .title {{
-            align-items: left;
+            text-align: left;
         }}
         .main-content {{
             display: flex;
