@@ -297,10 +297,7 @@ elif selected == "Analytics":
     fig, ax = plt.subplots(figsize=(20, 7))
 
     # Group by date and plot each year with a different color
-    for year, group in df.groupby(df['date'].dt.year):
-        group.groupby('date')['emission'].sum().plot(
-            kind='line', ax=ax, label=str(year), linewidth=2
-        )
+    df.groupby(['date'])['emission'].sum().plot(kind='line', figsize=(20, 7), xlabel='Date')
 
     # Mark the COVID effect year (2020)
     plt.axvspan('2020-01-01', '2020-12-31', color='red', alpha=0.3, label='COVID Effect')
