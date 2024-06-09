@@ -262,8 +262,8 @@ elif selected == "Analytics":
             size_max=30,
             zoom=6,
             width=540,
-            height=540,
-            title="Distribution of Average CO2 Emissions at Each Location in Rwanda"
+            height=340,
+            title=None
         )
         fig.add_scattermapbox(
             lat=zero_emission.latitude,
@@ -301,9 +301,6 @@ elif selected == "Analytics":
         group.groupby('date')['emission'].sum().plot(
             kind='line', ax=ax, label=str(year), linewidth=2
         )
-
-    # Plotting the line graph
-    ax.plot(df['date'], df['emission'], color='blue', linewidth=2, label='CO2 Emissions')
         
     # Mark the COVID effect year (2020)
     plt.axvspan('2020-01-01', '2020-12-31', color='red', alpha=0.3, label='COVID Effect')
