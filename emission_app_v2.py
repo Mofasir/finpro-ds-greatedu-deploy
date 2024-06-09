@@ -261,8 +261,9 @@ elif selected == "Analytics":
         color_continuous_scale=px.colors.sequential.Cividis,
         size_max=30,
         zoom=7,
-        width=540,
-        height=640,
+        width=240,
+        height=340,
+        title="Distribusi Rata-rata Emisi CO2 Setiap Lokasi di Rwanda"
     )
     fig.add_scattermapbox(
         lat=zero_emission.latitude,
