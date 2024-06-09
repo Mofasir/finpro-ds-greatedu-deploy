@@ -192,7 +192,8 @@ elif selected == "Data Description":
         """,
         unsafe_allow_html=True
     )
-    st.markdown("""
+    st.markdown(
+    """
     Dataset yang digunakan bersumber dari https://www.kaggle.com/competitions/playground-series-s3e20/data.
     Dataset ini berisi data emisi sumber terbuka (dari pengamatan satelit Sentinel-5P) untuk memprediksi emisi karbon.
     Sekitar 497 lokasi unik dipilih dari berbagai area di Rwanda, dengan distribusi di sekitar lahan pertanian, kota, dan pembangkit listrik. 
@@ -218,12 +219,19 @@ elif selected == "Data Description":
     - sample_submission.csv - file contoh pengiriman dalam format yang benar
     """)
 
+    st.markdown(
+    """
+    Berikut dataset yang digunakan sebagai data pelatihan pada prediksi :
+    """
+    )
+
     df = load_data()
 
     st.dataframe(df, width=1050)
     total_rows = len(df)
     total_columns = len(df.columns)
-    st.write(f"Total data terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
+    total_rows_formatted = "{:,}".format(total_rows).replace(",", ".")
+    st.write(f"Total data terdiri dari {total_rows_formatted} baris dan 76 kolom (Data Train Asli)")
 
 # Analytics Page
 elif selected == "Analytics":
