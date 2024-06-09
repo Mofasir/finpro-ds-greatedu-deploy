@@ -242,7 +242,7 @@ elif selected == "Analytics":
     with col1:
         st.markdown(
             """
-            **Statictical Summary**
+            **Statistical Summary**
             """
         )
         st.dataframe(df.describe(), width=1050)
@@ -260,10 +260,10 @@ elif selected == "Analytics":
         size="emission",
         color_continuous_scale=px.colors.sequential.Cividis,
         size_max=30,
-        zoom=6,
+        zoom=7,
         width=540,
         height=540,
-        title="Distribusi Rata-rata Emisi CO2 Setiap Lokasi di Rwanda"
+        title="Distribution of Average CO2 Emissions at Each Location in Rwanda"
     )
     fig.add_scattermapbox(
         lat=zero_emission.latitude,
