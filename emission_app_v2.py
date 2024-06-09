@@ -263,7 +263,7 @@ elif selected == "Analytics":
             zoom=6,
             width=540,
             height=360,
-            title=None
+            title="Distribution of Mean CO2 Emissions in Rwanda"
         )
         fig.add_scattermapbox(
             lat=zero_emission.latitude,
@@ -282,7 +282,7 @@ elif selected == "Analytics":
                 orientation="h",
                 yanchor="bottom",
                 xanchor="center",
-                y=-0.5,
+                y=-0.4,
                 x=0.5,
             ),
             legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
