@@ -113,6 +113,7 @@ st.markdown(
 
 # Home Page
 if selected == "Home":
+    st.title('Predict CO2 Emission in Rwanda')
     st.markdown(
         f"""
         <style>
@@ -138,8 +139,7 @@ if selected == "Home":
         """,
         unsafe_allow_html=True
     )
-
-    st.title('Predict CO2 Emission in Rwanda')
+    
     st.markdown(
     """
         <div class="main-content">
