@@ -381,13 +381,13 @@ elif selected == "Predict Emissions":
         except ValueError as e:
             st.error(f"Invalid input: {e}")
 
-# Function to update session state on map click
-@st.experimental_memo
-def update_session_state(click_data):
-    st.session_state["map_click"] = click_data
-
-# Update session state on map click
-update_session_state(st.session_state.get("plotly_click", None))
+    # Function to update session state on map click
+    @st.experimental_memo
+    def update_session_state(click_data):
+        st.session_state["map_click"] = click_data
+    
+    # Update session state on map click
+    update_session_state(st.session_state.get("plotly_click", None))
 
 # About Us Page
 elif selected == "About Us":
