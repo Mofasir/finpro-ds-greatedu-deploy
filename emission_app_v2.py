@@ -72,6 +72,7 @@ if selected == "Home":
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: left;
         }}
         .logo {{
             width: 360px;
@@ -79,9 +80,6 @@ if selected == "Home":
             background-image: url("data:image/png;base64,{img_logo}");
             background-size: contain;
             background-repeat: no-repeat;
-        }}
-        .title {{
-            text-align: left;
         }}
         .main-content {{
             display: flex;
