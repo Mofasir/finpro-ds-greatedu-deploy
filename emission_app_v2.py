@@ -265,9 +265,9 @@ elif selected == "Analytics":
             size="emission",
             color_continuous_scale=px.colors.sequential.Cividis,
             size_max=30,
-            zoom=5.5,
+            zoom=6,
             width=540,
-            height=315,
+            height=316,
             title="Location in Rwanda"
         )
         fig.add_scattermapbox(
