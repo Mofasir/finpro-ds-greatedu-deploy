@@ -43,40 +43,37 @@ def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
     
     return np.array([latitude_sin, longitude_sin, latitude_cos, longitude_cos, week_no_sin, week_no_cos, month_sin, month_cos])
 
+# Load the image background
+image_path = os.path.join(working_dir, "image/background.png")
+image = Image.open(image_path)
+buffered = io.BytesIO()
+image.save(buffered, format="PNG")
+img_bg = base64.b64encode(buffered.getvalue()).decode()
+
+# Load the image logo
+image_path = os.path.join(working_dir, "image/logo.png")
+image = Image.open(image_path)
+buffered = io.BytesIO()
+image.save(buffered, format="PNG")
+img_logo = base64.b64encode(buffered.getvalue()).decode()
+
 # Home Page
 if selected == "Home":
-    # Load the image background
-    image_path = os.path.join(working_dir, "image/background.png")
-    image = Image.open(image_path)
-    buffered = io.BytesIO()
-    image.save(buffered, format="PNG")
-    img_str = base64.b64encode(buffered.getvalue()).decode()
-
-    # Load the image logo
-    image_path = os.path.join(working_dir, "image/logo.png")
-    image = Image.open(image_path)
-    buffered = io.BytesIO()
-    image.save(buffered, format="PNG")
-    img_str1 = base64.b64encode(buffered.getvalue()).decode()
-
     st.markdown(
         f"""
         <style>
         .stApp {{
-            background-image: url("data:image/jpeg;base64,{img_str}");
+            background-image: url("data:image/jpeg;base64,{img_bg}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }}
-        .header {{
-            display: flex;
-            justify-content: space-between;
-        }}  
         .logo {{
+            align-item: center;
             margin-top: 20px;
-            width: 400px;
+            width: 300px;
             height: 50px;
-            background-image: url("data:image/png;base64,{img_str1}");
+            background-image: url("data:image/png;base64,{img_logo}");
             background-size: contain;
             background-repeat: no-repeat;
         }}
@@ -85,8 +82,6 @@ if selected == "Home":
             justify-content: space-between;
             border-radius: 10px;
             margin-top: 60px;
-        }}
-        .header .title h1 {{
         }}
         .fotodas{{
             display: flex;
@@ -124,35 +119,39 @@ if selected == "Home":
     st.markdown(
     """
         <div class="header">
-            <div class="title">
-                <h1>Predict CO2</h1>
-            </div>
             <div class="logo"></div>
+            <div class="title">
+                <h1>Predict CO2 Emission in Rwanda</h1>
+            </div>
         </div>
         <hr style="margin: 20px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
             <div class="description">
-              <div class = "fotodas">
-                <p class = "des">Pentingnya kualitas air dalam menjaga keberlanjutan lingkungan dan kesehatan masyarakat telah menjadi perhatian utama di seluruh dunia. 
-                Air adalah aset berharga yang tidak dapat digantikan, namun sering kali terpapar oleh berbagai faktor, mulai dari polusi industri hingga limbah domestik. 
-                Dalam menghadapi tantangan ini, perlu adanya upaya untuk mengembangkan sistem prediktif yang mampu memantau dan mengukur kualitas air secara akurat. 
-                Melalui analisis data dan teknologi yang inovatif, kita dapat mengidentifikasi pola perilaku air dan memprediksi potensi risiko yang terkait dengan perubahan lingkungan.</p>
-              </div>
-                <p style="text-align: justify;">Pada Studi Kasus Water Quality Prediction bertujuan untuk mengatasi tantangan ini dengan mengembangkan model prediksi yang efektif dan dapat diandalkan. 
-                Dengan memanfaatkan data terkini dan teknik analisis yang canggih, kita dapat memperkirakan kualitas air di lokasi tertentu dan mengidentifikasi faktor-faktor yang berpotensi mempengaruhi. 
-                Dengan demikian, upaya ini tidak hanya akan membantu dalam menjaga keberlanjutan sumber daya air, tetapi juga dapat memberikan informasi yang berharga bagi pengambil keputusan dalam menangani masalah lingkungan di masa depan.</p>
+                <p style="text-align: justify;">
+                Kemampuan untuk memantau emisi karbon secara akurat merupakan langkah penting dalam perjuangan melawan perubahan iklim. 
+                Pembacaan karbon yang tepat memungkinkan para peneliti dan pemerintah memahami sumber dan pola keluaran massa karbon. 
+                Meskipun Eropa dan Amerika Utara memiliki sistem ekstensif untuk memantau emisi karbon di lapangan, hanya sedikit sistem yang tersedia di Afrika.
+                </p>
+                <p style="font-size: 0.8em; text-align: justify;">
+                    <span><b>- Emisi CO2 yang Rendah di Rwanda </b></span><br>
+                    Negara dengan emisi CO2 yang rendah, dengan emisi per kapita 0,4 ton CO2 pada tahun 2020.<br>
+                    <span><b>- Target Emisi Nol Bersih 2050</b></span><br>
+                    Negara Rwanda telah berkomitmen untuk mencapai target emisi nol bersih pada tahun 2050.<br>
+                    <span><b>- Tantangan di Rwanda</b></span><br>
+                    Pelepasan gas karbon dioksida ke atmosfer sebagai hasil dari berbagai aktivitas manusia dan alam.<br>
+                    <span><b>- Penanggulangan Emisi CO2</b></span><br>
+                    Melacak dan memahami sumber emisi CO2 serta mencari solusi untuk mengurangi emisi CO2.
+                </p>
                 <div style='display: flex; justify-content: space-between; margin-bottom: 20px;'>
                   <div class="objective">
-                    <h6 style="text-align: center;">Objective</h6>
+                    <h6 style="text-align: center;">Tujuan</h6>
                     <p style="font-size: 0.8em; text-align: justify;">
-                        <span><b>1. Meningkatkan pemahaman tentang kualitas air</b></span><br>
-                        Melalui analisis prediktif, tujuan utama adalah meningkatkan pemahaman tentang faktor-faktor yang memengaruhi kualitas air di berbagai lokasi. Hal ini akan membantu dalam mengidentifikasi sumber polusi dan potensi risiko terhadap kesehatan manusia dan lingkungan.<br>
-                        <span><b>2. Peningkatan responsibilitas lingkungan</b></span><br>
-                        Dengan memprediksi kualitas air secara akurat, tujuan ini adalah untuk memberikan solusi yang dapat meningkatkan tanggung jawab lingkungan dalam pengelolaan sumber daya air. Hal ini dapat mencakup upaya untuk mengurangi polusi air, mengoptimalkan penggunaan air, dan meminimalkan dampak negatif terhadap ekosistem air.<br>
-                        <span><b>3. Mendukung keberlanjutan lingkungan</b></span><br>
-                        Melalui pemahaman yang lebih baik tentang kualitas air, tujuan ini adalah untuk mendukung upaya-upaya dalam menjaga keberlanjutan lingkungan. Hal ini dapat mencakup pengelolaan air yang lebih efisien, perlindungan habitat air, dan pemulihan ekosistem air yang terganggu.<br>
-                        <span><b>4. Peningkatan kesehatan masyarakat</b></span><br>
-                        Dengan memantau kualitas air secara berkala dan melakukan prediksi yang akurat, tujuan ini adalah untuk melindungi kesehatan masyarakat dari risiko yang berkaitan dengan konsumsi air yang tercemar. Hal ini akan membantu dalam mengurangi risiko penyakit terkait air dan meningkatkan kualitas hidup masyarakat secara keseluruhan.
+                        <span><b>1. Model Prediksi</b></span><br>
+                        Mengembangkan model machine learning yang mampu memprediksi emisi CO2 untuk setiap minggu dan setiap lokasi di Rwanda.<br>
+                        <span><b>2. Identifikasi Skenario Emisi</b></span><br>
+                        Menjelajahi berbagai skenario berdasarkan berbagai faktor polutan, sehingga memungkinkan para pembuat kebijakan untuk memahami konsekuensi lingkungan.<br>
+                        <span><b>3. Benefit</b></span><br>
+                        Rekomendasi kebijakan konkret yang dirumuskan untuk memandu Rwanda dalam mengurangi emisi CO2 secara efektif.<br>
                     </p>
                   </div>
                 </div>
@@ -164,50 +163,67 @@ if selected == "Home":
     
     # Footer
     st.markdown("""
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 10px;">
-        <div style="display: flex; align-items: flex-start; font-size: 15px;">
-            <i class="material-icons" style="font-size: 25px; margin-right: 5px; color: #4C4D50 ;">location_on</i>
-            <div style="font-size: 15px; color: #4C4D50;">
-                Jl. Duren Tiga Raya No.09, RT.12/RW.1, Duren<br>
-                Tiga, Kec. Pancoran, Kota Jakarta Selatan,<br>
-                Daerah Khusus Ibukota Jakarta 12760
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <div style="display: flex; flex-direction: column;">
         <hr style="border-top: 1px solid #ddd; margin: 10px 0;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
             <div style="display: flex; align-items: center; font-size: 15px; color: #4C4D50;">
-                <i class="far fa-copyright" style="font-size: 20px; margin-right: 5px;"></i>
-                2024 <span style="margin-left: 2px"><b>Fun-tastic Four</b></span>. All Rights Reserved
-            </div>
-            <div style="font-size: 14px; margin: 0; color: #4C4D50;">
-                SIB Cycle 6 | 2024
+                <i class="far fa-copyright" style="font-size: 15px; margin-right: 5px;"></i>
+                2024 <span style="margin-left: 2px">PyBoys Group | Data Scientist in GreatEdu | SIB Cycle 6</span>. All Rights Reserved
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    This application predicts CO2 emissions using machine learning models trained on open-source emissions data.
-    Explore the app to predict emissions for different locations and time periods.
-    """)
 
 # Data Description Page
-elif selected == "Data Description":
+elif selected == "Data Description": 
+    # Set the background image
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{img_bg}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.title('Data Description')
 
 # Analytics Page
 elif selected == "Analytics":
+    # Set the background image
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{img_bg}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.title('Analytics')
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
+    # Set the background image
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{img_bg}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
 
     # Load the model
@@ -259,8 +275,21 @@ elif selected == "Predict Emissions":
         except ValueError as e:
             st.error(f"Invalid input: {e}")
 
-# About Page
+# About Us Page
 elif selected == "About Us":
+    # Set the background image
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{img_bg}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.title("About Us")
     st.markdown("""
     This application uses machine learning models to predict CO2 emissions based on satellite data.
