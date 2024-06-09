@@ -275,14 +275,14 @@ elif selected == "Analytics":
             mapbox_style="open-street-map",
             margin=dict(r=0, t=90, l=0, b=0),
             font_color="#4A4B52",
-            title_font_size=18,
+            title_font_size=14,
             coloraxis_colorbar=dict(
                 title="Mean Emission",
                 title_side="top",
                 orientation="h",
                 yanchor="bottom",
                 xanchor="center",
-                y=-0.4,
+                y=-0.35,
                 x=0.5,
             ),
             legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
@@ -363,13 +363,6 @@ elif selected == "Predict Emissions":
 elif selected == "About Us":
     st.title("About Us")
     st.markdown("""
-    This application uses machine learning models to predict CO2 emissions based on satellite data.
-    The model was trained using data from Sentinel-5P satellite observations.
-    
-    **Features:**
-    - Predict CO2 emissions based on geographical coordinates and time.
-    - Easy to use interface with clear input fields.
-    
     **Developed by:**
     - Rama Ngurah Putera Pinatih
     - Rahuldi
