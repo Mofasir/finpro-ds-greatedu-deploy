@@ -187,8 +187,10 @@ elif selected == "Data Description":
         <style>
         .stApp {{
             text-align: justify;
+        }}
         </style>
-        """
+        """,
+        unsafe_allow_html=True
     )
     st.markdown("""
     Dataset yang digunakan bersumber dari https://www.kaggle.com/competitions/playground-series-s3e20/data.
