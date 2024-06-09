@@ -138,7 +138,7 @@ if selected == "Home":
                 </p>
                 <div style='display: flex; justify-content: space-between; margin-bottom: 20px;'>
                   <div class="objective">
-                    <h6 style="font-weight:bold font-size: 50px">Tujuan</h6>
+                    <h6 style="font-weight:bold font-size: 80px">Tujuan</h6>
                     <p style="text-align: justify;">
                         <span><b>1. Model Prediksi</b></span><br>
                         Mengembangkan model machine learning yang mampu memprediksi emisi CO2 untuk setiap minggu dan setiap lokasi di Rwanda.<br>
