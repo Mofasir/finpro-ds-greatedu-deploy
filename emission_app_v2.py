@@ -319,6 +319,8 @@ elif selected == "Analytics":
 elif selected == "Predict Emissions":
     st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
 
+    df = load_data()
+
     # Maximum week value (should be derived from your training data)
     max_week_val = 52
 
