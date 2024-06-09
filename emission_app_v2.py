@@ -70,6 +70,7 @@ if selected == "Home":
         }}
         .header {{
             display: flex;
+            flex-direction: column;
             justify-content: center;
         }}
         .logo {{
