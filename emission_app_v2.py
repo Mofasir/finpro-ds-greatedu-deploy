@@ -236,6 +236,10 @@ elif selected == "Data Description":
 elif selected == "Analytics":
     st.title('Analytics')
 
+    df = load_data()
+
+    st.dataframe(df.describe(), width=1050)
+
 # Predict Emissions Page
 elif selected == "Predict Emissions":
     st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
