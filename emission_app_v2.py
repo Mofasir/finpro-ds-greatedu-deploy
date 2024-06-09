@@ -260,7 +260,7 @@ elif selected == "Analytics":
             size="emission",
             color_continuous_scale=px.colors.sequential.Cividis,
             size_max=30,
-            zoom=5,
+            zoom=5.5,
             width=540,
             height=360,
             title="Distribution of Mean CO2 Emissions in Rwanda"
