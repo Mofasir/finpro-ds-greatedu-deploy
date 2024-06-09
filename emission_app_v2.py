@@ -293,24 +293,24 @@ elif selected == "Analytics":
 
     # Combine year and week_no to create a datetime column
     df['date'] = pd.to_datetime(df['year'], format="%Y") + pd.to_timedelta(df['week_no'].sub(1), unit="W")
-        
+    df = df.sort_values('date')
+    
     fig, ax = plt.subplots(figsize=(20, 7))
         
     # Group by date and plot each year with a different color
     for year, group in df.groupby(df['date'].dt.year):
-        group.groupby('date')['emission'].sum().plot(
-            kind='line', ax=ax, label=str(year), linewidth=2
-        )
+        group = group.set_index('date').resample('W').sum()
+        ax.plot(group.index, group['emission'], label=str(year), linewidth=2)
         
     # Mark the COVID effect year (2020)
-    plt.axvspan('2020-01-01', '2020-12-31', color='red', alpha=0.3, label='COVID Effect')
+    ax.axvspan(pd.Timestamp('2020-01-01'), pd.Timestamp('2020-12-31'), color='red', alpha=0.3, label='COVID Effect')
         
     # Customize the plot
-    plt.title("CO2 Emissions Over the Years from 2019 to 2021")
-    plt.xlabel('Date')
-    plt.ylabel('CO2 Emissions')
-    plt.legend()
-    plt.grid(True)
+    ax.set_title("CO2 Emissions Over the Years from 2019 to 2021")
+    ax.set_xlabel('Date')
+    ax.set_ylabel('CO2 Emissions')
+    ax.legend()
+    ax.grid(True)
         
     # Display the plot in Streamlit
     st.pyplot(fig)
