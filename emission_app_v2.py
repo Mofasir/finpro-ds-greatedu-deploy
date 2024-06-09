@@ -282,7 +282,7 @@ elif selected == "Analytics":
                 orientation="h",
                 yanchor="bottom",
                 xanchor="center",
-                y=-0.13,
+                y=-0.3,
                 x=0.5,
             ),
             legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
