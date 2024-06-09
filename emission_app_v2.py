@@ -68,20 +68,25 @@ if selected == "Home":
             background-position: center;
             background-repeat: no-repeat;
         }}
+        .header {{
+            display: flex;
+            justify-content: center;
+        }}
         .logo {{
-            align-items: center;
-            margin-top: 20px;
             width: 360px;
             height: 80px;
             background-image: url("data:image/png;base64,{img_logo}");
             background-size: contain;
             background-repeat: no-repeat;
         }}
+        .title {{
+            justify-content: left;
+        }}
         .main-content {{
             display: flex;
             justify-content: space-between;
             border-radius: 10px;
-            margin-top: 10px;
+            margin-top: 20px;
         }}
         .fotodas{{
             display: flex;
@@ -118,13 +123,14 @@ if selected == "Home":
     
     st.markdown(
     """
-        <div class="logo"></div>
+
         <div class="header">
+            <div class="logo"></div>
             <div class="title">
                 <h1>Predict CO2 Emission in Rwanda</h1>
             </div>
         </div>
-        <hr style="margin: 10px 0; border-top: 1px solid #ddd;">
+        <hr style="margin: 5px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
             <div class="description">
                 <p style="text-align: justify;">
