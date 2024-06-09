@@ -73,7 +73,7 @@ if selected == "Home":
             flex-direction: column;
         }}
         .logo {{
-            justify-content: center;
+            align-items: center;
             width: 360px;
             height: 60px;
             background-image: url("data:image/png;base64,{img_logo}");
