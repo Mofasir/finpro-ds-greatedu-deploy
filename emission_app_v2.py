@@ -87,15 +87,6 @@ if selected == "Home":
             border-radius: 10px;
             margin-top: 20px;
         }}
-        .fotodas{{
-            display: flex;
-            justify-content: space-between;
-        }}
-        .des{{
-            flex: 1;
-            margin-left: 10px;
-            text-align: justify;
-        }}
         .description {{
             border-radius: 10px;
             margin-top: 20 px;
@@ -104,9 +95,9 @@ if selected == "Home":
             flex: 1;
             padding: 20px;
             border-radius: 10px;
-            background-color: #D9FAEE;
+            background-color: #CBBA99;
             margin-right: 10px;
-            width: 50%;
+            width: 100%;
         }}
         .benefit {{
             flex: 1;
