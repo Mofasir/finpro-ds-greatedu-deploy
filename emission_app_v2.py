@@ -71,6 +71,7 @@ if selected == "Home":
         .header {{
             display: flex;
             align-items: center;
+            justify-content: center;
         }}
         .logo {{
             width: 360px;
