@@ -80,6 +80,9 @@ if selected == "Home":
             background-size: contain;
             background-repeat: no-repeat;
         }}
+        .title {{
+            align-items: left;
+        }}
         .main-content {{
             display: flex;
             justify-content: space-between;
