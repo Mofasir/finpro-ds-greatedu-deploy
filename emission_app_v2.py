@@ -71,11 +71,11 @@ if selected == "Home":
         .header {{
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }}
         .logo {{
+            justify-content: center;
             width: 360px;
-            height: 80px;
+            height: 60px;
             background-image: url("data:image/png;base64,{img_logo}");
             background-size: contain;
             background-repeat: no-repeat;
