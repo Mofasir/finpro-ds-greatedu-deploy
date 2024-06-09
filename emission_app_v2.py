@@ -261,8 +261,8 @@ elif selected == "Analytics":
         color_continuous_scale=px.colors.sequential.Cividis,
         size_max=30,
         zoom=7,
-        width=240,
-        height=340,
+        width=540,
+        height=540,
         title="Distribusi Rata-rata Emisi CO2 Setiap Lokasi di Rwanda"
     )
     fig.add_scattermapbox(
@@ -289,7 +289,7 @@ elif selected == "Analytics":
         plot_bgcolor="#FFFCFA",
         paper_bgcolor="#FFFCFA",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=False)
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
