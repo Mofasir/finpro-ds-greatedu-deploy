@@ -150,13 +150,13 @@ if selected == "Home":
                 Meskipun Eropa dan Amerika Utara memiliki sistem ekstensif untuk memantau emisi karbon di lapangan, hanya sedikit sistem yang tersedia di Afrika.
                 </p>
                 <p style="text-align: justify;">
-                    <span><b>- Emisi CO2 yang Rendah di Rwanda </b></span><br>
+                    <span><b>Emisi CO2 yang Rendah di Rwanda </b></span><br>
                     Negara dengan emisi CO2 yang rendah, dengan emisi per kapita 0,4 ton CO2 pada tahun 2020.<br>
-                    <span><b>- Target Emisi Nol Bersih 2050</b></span><br>
+                    <span><b>Target Emisi Nol Bersih 2050</b></span><br>
                     Negara Rwanda telah berkomitmen untuk mencapai target emisi nol bersih pada tahun 2050.<br>
-                    <span><b>- Tantangan di Rwanda</b></span><br>
+                    <span><b>Tantangan di Rwanda</b></span><br>
                     Pelepasan gas karbon dioksida ke atmosfer sebagai hasil dari berbagai aktivitas manusia dan alam.<br>
-                    <span><b>- Penanggulangan Emisi CO2</b></span><br>
+                    <span><b>Penanggulangan Emisi CO2</b></span><br>
                     Melacak dan memahami sumber emisi CO2 serta mencari solusi untuk mengurangi emisi CO2.
                 </p>
                 <div style='display: flex; justify-content: space-between; margin-bottom: 20px;'>
@@ -256,7 +256,7 @@ elif selected == "Analytics":
         )
 
         # Combine year and week_no to create a datetime column
-        df['date'] = pd.to_datetime(train_clean['year'], format="%Y") + pd.to_timedelta(train_clean['week_no'].sub(1), unit="W")
+        df['date'] = pd.to_datetime(df['year'], format="%Y") + pd.to_timedelta(df['week_no'].sub(1), unit="W")
         
         fig, ax = plt.subplots(figsize=(20, 7))
         
