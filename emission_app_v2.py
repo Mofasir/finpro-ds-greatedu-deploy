@@ -249,78 +249,74 @@ elif selected == "Analytics":
         st.dataframe(df.describe(), width=1050)
 
     with col2:
-        st.markdown(
-            """
-            **CO2 Emissions Over the Years from 2019 to 2021**
-            """
+        geo_mean_emission = df.groupby(["latitude", "longitude"]).emission.mean().reset_index()
+        zero_emission = geo_mean_emission[geo_mean_emission.emission == 0]
+            
+        fig = px.scatter_mapbox(
+            geo_mean_emission,
+            lat="latitude",
+            lon="longitude",
+            color="emission",
+            size="emission",
+            color_continuous_scale=px.colors.sequential.Cividis,
+            size_max=30,
+            zoom=6,
+            width=540,
+            height=540,
+            title="Distribution of Average CO2 Emissions at Each Location in Rwanda"
+        )
+        fig.add_scattermapbox(
+            lat=zero_emission.latitude,
+            lon=zero_emission.longitude,
+            name="Zero-Emission",
+            marker=dict(color="#228B22", size=15, symbol="circle", opacity=0.75),
+        )
+        fig.update_layout(
+            mapbox_style="open-street-map",
+            margin=dict(r=0, t=90, l=0, b=0),
+            font_color="#4A4B52",
+            title_font_size=18,
+            coloraxis_colorbar=dict(
+                title="Mean Emission",
+                title_side="top",
+                orientation="h",
+                yanchor="bottom",
+                xanchor="center",
+                y=-0.13,
+                x=0.5,
+            ),
+            legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
+            plot_bgcolor="#FFFCFA",
+            paper_bgcolor="#FFFCFA",
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+    # Combine year and week_no to create a datetime column
+    df['date'] = pd.to_datetime(df['year'], format="%Y") + pd.to_timedelta(df['week_no'].sub(1), unit="W")
+        
+    fig, ax = plt.subplots(figsize=(20, 7))
+        
+    # Group by date and plot each year with a different color
+    for year, group in df.groupby(df['date'].dt.year):
+        group.groupby('date')['emission'].sum().plot(
+            kind='line', ax=ax, label=str(year), linewidth=2
         )
 
-        # Combine year and week_no to create a datetime column
-        df['date'] = pd.to_datetime(df['year'], format="%Y") + pd.to_timedelta(df['week_no'].sub(1), unit="W")
+    # Plotting the line graph
+    ax.plot(df['date'], df['emission'], color='blue', linewidth=2, label='CO2 Emissions')
         
-        fig, ax = plt.subplots(figsize=(20, 7))
+    # Mark the COVID effect year (2020)
+    plt.axvspan('2020-01-01', '2020-12-31', color='red', alpha=0.3, label='COVID Effect')
         
-        # Group by date and plot each year with a different color
-        for year, group in df.groupby(df['date'].dt.year):
-            group.groupby('date')['emission'].sum().plot(
-                kind='line', ax=ax, label=str(year), linewidth=2
-            )
+    # Customize the plot
+    plt.title("CO2 Emissions Over the Years from 2019 to 2021")
+    plt.xlabel('Date')
+    plt.ylabel('CO2 Emissions')
+    plt.legend()
+    plt.grid(True)
         
-        # Mark the COVID effect year (2020)
-        plt.axvspan('2020-01-01', '2020-12-31', color='red', alpha=0.3, label='COVID Effect')
-        
-        # Customize the plot
-        plt.title("CO2 Emissions Over the Years from 2019 to 2021")
-        plt.xlabel('Date')
-        plt.ylabel('CO2 Emissions')
-        plt.legend()
-        plt.grid(True)
-        
-        # Display the plot in Streamlit
-        st.pyplot(fig)
-
-    geo_mean_emission = df.groupby(["latitude", "longitude"]).emission.mean().reset_index()
-    zero_emission = geo_mean_emission[geo_mean_emission.emission == 0]
-        
-    fig = px.scatter_mapbox(
-        geo_mean_emission,
-        lat="latitude",
-        lon="longitude",
-        color="emission",
-        size="emission",
-        color_continuous_scale=px.colors.sequential.Cividis,
-        size_max=30,
-        zoom=6,
-        width=540,
-        height=540,
-        title="Distribution of Average CO2 Emissions at Each Location in Rwanda"
-    )
-    fig.add_scattermapbox(
-        lat=zero_emission.latitude,
-        lon=zero_emission.longitude,
-        name="Zero-Emission",
-        marker=dict(color="#228B22", size=15, symbol="circle", opacity=0.75),
-    )
-    fig.update_layout(
-        mapbox_style="open-street-map",
-        margin=dict(r=0, t=90, l=0, b=0),
-        font_color="#4A4B52",
-        title_font_size=18,
-        coloraxis_colorbar=dict(
-            title="Mean Emission",
-            title_side="top",
-            orientation="h",
-            yanchor="bottom",
-            xanchor="center",
-            y=-0.13,
-            x=0.5,
-        ),
-        legend=dict(yanchor="bottom", xanchor="right", y=1, x=1, orientation="h"),
-        plot_bgcolor="#FFFCFA",
-        paper_bgcolor="#FFFCFA",
-    )
-    st.plotly_chart(fig, use_container_width=True)
-
+    # Display the plot in Streamlit
+    st.pyplot(fig)
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
