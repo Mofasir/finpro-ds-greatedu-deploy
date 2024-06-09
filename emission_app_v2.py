@@ -69,7 +69,7 @@ if selected == "Home":
             background-repeat: no-repeat;
         }}
         .logo {{
-            align-item: center;
+            justify-content: center;
             margin-top: 20px;
             width: 300px;
             height: 50px;
@@ -81,7 +81,7 @@ if selected == "Home":
             display: flex;
             justify-content: space-between;
             border-radius: 10px;
-            margin-top: 60px;
+            margin-top: 10px;
         }}
         .fotodas{{
             display: flex;
@@ -124,7 +124,7 @@ if selected == "Home":
                 <h1>Predict CO2 Emission in Rwanda</h1>
             </div>
         </div>
-        <hr style="margin: 20px 0; border-top: 1px solid #ddd;">
+        <hr style="margin: 10px 0; border-top: 1px solid #ddd;">
         <div class="main-content">
             <div class="description">
                 <p style="text-align: justify;">
@@ -132,7 +132,7 @@ if selected == "Home":
                 Pembacaan karbon yang tepat memungkinkan para peneliti dan pemerintah memahami sumber dan pola keluaran massa karbon. 
                 Meskipun Eropa dan Amerika Utara memiliki sistem ekstensif untuk memantau emisi karbon di lapangan, hanya sedikit sistem yang tersedia di Afrika.
                 </p>
-                <p style="font-size: 0.8em; text-align: justify;">
+                <p style="text-align: justify;">
                     <span><b>- Emisi CO2 yang Rendah di Rwanda </b></span><br>
                     Negara dengan emisi CO2 yang rendah, dengan emisi per kapita 0,4 ton CO2 pada tahun 2020.<br>
                     <span><b>- Target Emisi Nol Bersih 2050</b></span><br>
@@ -144,8 +144,8 @@ if selected == "Home":
                 </p>
                 <div style='display: flex; justify-content: space-between; margin-bottom: 20px;'>
                   <div class="objective">
-                    <h6 style="text-align: center;">Tujuan</h6>
-                    <p style="font-size: 0.8em; text-align: justify;">
+                    <h6 style="text-align: center; font-weight:bold">Tujuan</h6>
+                    <p style="text-align: justify;">
                         <span><b>1. Model Prediksi</b></span><br>
                         Mengembangkan model machine learning yang mampu memprediksi emisi CO2 untuk setiap minggu dan setiap lokasi di Rwanda.<br>
                         <span><b>2. Identifikasi Skenario Emisi</b></span><br>
