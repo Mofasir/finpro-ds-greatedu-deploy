@@ -364,11 +364,11 @@ elif selected == "About Us":
     st.title("About Us")
     st.markdown("""
     **Developed by:**
-    - Rama Ngurah Putera Pinatih
-    - Rahuldi
-    - Amin Yazid Achmad
-    - Muhammad Asri Alfajri
-    - Mohammad Faikar Natsir
+    - Rama Ngurah Putera Pinatih - Project Leader
+    - Rahuldi - Analyst
+    - Amin Yazid Achmad - Visualizer
+    - Muhammad Asri Alfajri - Modeller
+    - Mohammad Faikar Natsir - Modeller
     """)
 
 # Footer
