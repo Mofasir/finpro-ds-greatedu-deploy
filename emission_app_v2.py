@@ -221,7 +221,7 @@ elif selected == "Data Description":
 
     st.markdown(
     """
-    Berikut dataset yang digunakan sebagai data pelatihan pada prediksi :
+    Berikut dataset (versi lite, tanpa fitur utama) yang digunakan sebagai data pelatihan dalam prediksi :
     """
     )
 
