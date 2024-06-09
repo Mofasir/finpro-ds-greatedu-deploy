@@ -319,8 +319,6 @@ elif selected == "Analytics":
 elif selected == "Predict Emissions":
     st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
 
-    df = load_data()
-
     # Maximum week value (should be derived from your training data)
     max_week_val = 52
 
@@ -336,39 +334,17 @@ elif selected == "Predict Emissions":
         input_data = np.concatenate(([year_int], encoded_input)).reshape(1, -1)
         return input_data
 
-    # Function to update latitude and longitude fields
-    def update_coordinates(click_data):
-        if click_data and "points" in click_data and click_data["points"]:
-            lat, lon = click_data["points"][0]["lat"], click_data["points"][0]["lon"]
-            st.session_state.latitude = lat
-            st.session_state.longitude = lon
-
     # Getting the input data from the user
     col1, col2 = st.columns(2)
 
     with col1:
-        latitude = st.text_input('Coordinate of Latitude', value=st.session_state.get("latitude", ""), key="latitude")
+        latitude = st.text_input('Coordinate of Latitude')
     with col2:
         year = st.text_input('Year')
     with col1:
-        longitude = st.text_input('Coordinate of Longitude', value=st.session_state.get("longitude", ""), key="longitude")
+        longitude = st.text_input('Coordinate of Longitude')
     with col2:
         week_no = st.text_input('Number of week')
-
-    # Render map
-    fig = px.scatter_mapbox(
-        df, lat="latitude", lon="longitude",
-        color_discrete_sequence=["fuchsia"], zoom=5, height=300
-    )
-    fig.update_layout(mapbox_style="open-street-map")
-    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-    fig.update_layout(clickmode='event+select')
-    fig.update_traces(marker=dict(size=10))
-    st.plotly_chart(fig, use_container_width=True)
-
-    # Capture click event on map
-    map_click = st.session_state.get("plotly_click", None)
-    update_coordinates(map_click)
 
     # Code for prediction
     emission_predict = ''
@@ -382,14 +358,6 @@ elif selected == "Predict Emissions":
             st.success(f'Predicted CO2 Emission: {emission_predict[0]}')
         except ValueError as e:
             st.error(f"Invalid input: {e}")
-
-    # Function to update session state on map click
-    @st.experimental_memo
-    def update_session_state(click_data):
-        st.session_state["plotly_click"] = click_data
-    
-    # Update session state on map click
-    update_session_state(st.session_state.get("plotly_click", None))
 
 # About Us Page
 elif selected == "About Us":
