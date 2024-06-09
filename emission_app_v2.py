@@ -74,7 +74,6 @@ if selected == "Home":
             justify-content: center;
         }}
         .logo {{
-            margin-top: -40px;
             width: 360px;
             height: 80px;
             background-image: url("data:image/png;base64,{img_logo}");
