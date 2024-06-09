@@ -19,6 +19,26 @@ st.set_page_config(
 # Getting the working directory of the emission_app.py
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
+# Load Dataset
+@st.cache_data
+# Dataset Train (Versi lite)
+def load_data():
+  dataset_path = os.path.join(working_dir, "datasets/train_lite.csv")
+  data = pd.read_csv(dataset_path)
+  return data
+
+# Dataset Describe
+def load_data():
+  dataset_path1 = os.path.join(working_dir, "datasets/train_desc.csv")
+  data = pd.read_csv(dataset_path1)
+  return data
+
+# Load the model
+model_file = 'saved_model/emission_model.sav'
+with open(model_file, 'rb') as f:
+    emission_model = pickle.load(f)
+
+
 # Sidebar menu
 with st.sidebar:
     selected = option_menu(
@@ -162,6 +182,39 @@ if selected == "Home":
 # Data Description Page
 elif selected == "Data Description": 
     st.title('Data Description')
+    st.markdown("""
+    Dataset yang digunakan bersumber dari <a href="https://www.kaggle.com/competitions/playground-series-s3e20/data">https://www.kaggle.com/competitions/playground-series-s3e20/data</a>.
+    Dataset ini berisi data emisi sumber terbuka (dari pengamatan satelit Sentinel-5P) untuk memprediksi emisi karbon.
+    Sekitar 497 lokasi unik dipilih dari berbagai area di Rwanda, dengan distribusi di sekitar lahan pertanian, kota, dan pembangkit listrik. 
+    Data untuk kompetisi ini dibagi berdasarkan waktu tahun 2019 - 2021 termasuk dalam data train, dan tugas kita memprediksi data emisi CO2 untuk tahun 2022 hingga November.<br>
+
+    Tujuh fitur utama diekstraksi setiap minggu dari Sentinel-5P dari Januari 2019 hingga November 2022. 
+    Setiap fitur (Sulfur Dioksida, Karbon Monoksida, dll) mengandung sub fitur seperti column_number_density yang merupakan kerapatan kolom vertikal di permukaan tanah, yang dihitung dengan menggunakan teknik DOAS. 
+    Kita dapat membaca lebih lanjut mengenai setiap fitur pada tautan di bawah ini, termasuk bagaimana fitur tersebut diukur dan definisi variabel. 
+    Kita akan diberikan nilai fitur-fitur ini dalam set test dan tujuan kita untuk memprediksi emisi CO2 dengan menggunakan informasi waktu serta fitur-fitur ini.
+    
+    **Fitur Utama:**
+    - Sulphur Dioxide - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_SO2">COPERNICUS/S5P/NRTI/L3_SO2</a>
+    - Carbon Monoxide - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_CO">COPERNICUS/S5P/NRTI/L3_CO</a>
+    - Nitrogen Dioxide - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_NO2">COPERNICUS/S5P/NRTI/L3_NO2</a>
+    - Formaldehyde - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_HCHO">COPERNICUS/S5P/NRTI/L3_HCHO</a>
+    - UV Aerosol Index - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_AER_AI">COPERNICUS/S5P/NRTI/L3_AER_AI</a>
+    - Ozone - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_NRTI_L3_O3">COPERNICUS/S5P/NRTI/L3_O3</a>
+    - Cloud - <a href="https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CLOUD">COPERNICUS/S5P/OFFL/L3_CLOUD</a>
+
+    **Berkas-berkas:**
+    - train.csv
+    - test.csv
+    - sample_submission.csv - file contoh pengiriman dalam format yang benar
+    """)
+
+    df = load_data()
+
+    st.dataframe(df, width=1050)
+    total_rows = len(df)
+    total_columns = len(df.columns)
+    total_rows_formatted = "{:,}".format(total_rows).replace(",", ".")
+    st.write(f"Total data terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
 
 # Analytics Page
 elif selected == "Analytics":
@@ -169,29 +222,7 @@ elif selected == "Analytics":
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
-    # Set the background image
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/jpeg;base64,{img_bg}");
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
-
-    # Load the model
-    try:
-        model_file = 'saved_model/emission_model.sav'
-        with open(model_file, 'rb') as f:
-            emission_model = pickle.load(f)
-        st.success("Model loaded successfully.")
-    except Exception as e:
-        st.error(f"Error loading the model: {e}")
 
     # Maximum week value (should be derived from your training data)
     max_week_val = 52
@@ -235,19 +266,6 @@ elif selected == "Predict Emissions":
 
 # About Us Page
 elif selected == "About Us":
-    # Set the background image
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/jpeg;base64,{img_bg}");
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     st.title("About Us")
     st.markdown("""
     This application uses machine learning models to predict CO2 emissions based on satellite data.
