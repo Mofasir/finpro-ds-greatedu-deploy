@@ -71,17 +71,14 @@ if selected == "Home":
         .header {{
             display: flex;
             flex-direction: column;
+            align-items: center;
         }}
         .logo {{
-            align-items: center;
             width: 360px;
             height: 60px;
             background-image: url("data:image/png;base64,{img_logo}");
             background-size: contain;
             background-repeat: no-repeat;
-        }}
-        .title {{
-            justify-content: left;
         }}
         .main-content {{
             display: flex;
