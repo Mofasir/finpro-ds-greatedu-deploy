@@ -289,7 +289,7 @@ elif selected == "Analytics":
         plot_bgcolor="#FFFCFA",
         paper_bgcolor="#FFFCFA",
     )
-    st.plotly_chart(fig, use_container_width=False)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 # Predict Emissions Page
