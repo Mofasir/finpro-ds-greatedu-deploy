@@ -17,13 +17,7 @@ import matplotlib.pyplot as plt
 st.set_page_config(
     page_title="CO2 Emission Predict App",
     layout="wide",
-    page_icon="🌍",
-    theme="light",
-    primaryColor="#9A8967",
-    backgroundColor="#ffffff",
-    secondaryBackgroundColor="#CBBA99",
-    textColor="#000000",
-    font="sans serif"
+    page_icon="🌍"
 )
 
 # Getting the working directory of the emission_app.py
