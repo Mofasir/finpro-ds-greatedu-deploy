@@ -365,7 +365,7 @@ elif selected == "Predict Emissions":
 elif selected == "About Us":
     st.title("About Us")
     st.markdown("""
-    *PyBoys Group*
+    ***PyBoys Group***
     **Our Mentor: Kak Dandy Arif Rahman**
     """)
     col1, col2, col3, col4, col5 = st.columns(5)
