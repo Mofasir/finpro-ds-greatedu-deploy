@@ -347,15 +347,12 @@ elif selected == "Predict Emissions":
         m.add_child(folium.LatLngPopup())
         
         # Menampilkan peta di Streamlit
-        st_folium(m, heiht=500)
+        st_folium(m, height=500)
 
     with col2:
         latitude = st.text_input('Coordinate of Latitude')
-    with col2:
         longitude = st.text_input('Coordinate of Longitude')
-    with col2:
         year = st.text_input('Year')
-    with col2:
         week_no = st.text_input('Number of week')
 
     # Code for prediction
