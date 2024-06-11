@@ -43,7 +43,7 @@ st.sidebar.image("image/pyboys.png", use_column_width=True)
 with st.sidebar:
     selected = option_menu(
         menu_title="Main Menu",
-        options=["Home", "Data Description", "Analytics","Predict Emissions", "About Us"],
+        options=["Home", "Data Description", "Analytics","Predict Emission", "About Us"],
         icons=["house", "clipboard", "graph-up", "cloud", "people"],
         menu_icon="cast",
         default_index=0,
