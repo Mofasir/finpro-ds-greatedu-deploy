@@ -347,13 +347,13 @@ elif selected == "Predict Emissions":
         m.add_child(folium.LatLngPopup())
         
         # Menampilkan peta di Streamlit
-        map_data = st_folium(m, height=318, width=250)
+        map_data = st_folium(m, height=318, use_column_width=True)
 
     with col2:
         # Menangkap koordinat klik dari map_data
         if map_data and map_data['last_clicked']:
-            latitude = map_data['last_clicked']['lat']
-            longitude = map_data['last_clicked']['lng']
+            latitude = round(map_data['last_clicked']['lat'], 4)
+            longitude = round(map_data['last_clicked']['lng'], 4)
         else:
             latitude = ""
             longitude = ""
