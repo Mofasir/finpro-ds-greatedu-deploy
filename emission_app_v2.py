@@ -51,7 +51,15 @@ with st.sidebar:
 
     # Menambahkan teks di bagian bawah sidebar
     st.markdown("""
-        <div style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
+        <style>
+        .sidebar-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        </style>
+        <div class="sidebar-footer">
             <p>Developed by PyBoys Group</p>
             <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
         </div>
