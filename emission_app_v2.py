@@ -32,7 +32,7 @@ def load_data():
   return data
 
 # Load the model
-model_file = 'saved_model/emission_model.sav'
+model_file = 'saved_model/randomforest_model.sav'
 with open(model_file, 'rb') as f:
     emission_model = pickle.load(f)
 
@@ -377,7 +377,6 @@ elif selected == "Predict Emission":
         try:
             user_input = preprocess_input(latitude, longitude, year, week_no, max_week_val)
             emission_predict = emission_model.predict(user_input)
-            emission_predict = np.power(emission_predict, 3)  # Transform back the prediction
             st.success(f'Predicted CO2 Emission: {emission_predict[0]}')
         except ValueError as e:
             st.error(f"Invalid input: {e}")
