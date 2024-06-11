@@ -316,7 +316,7 @@ elif selected == "Analytics":
 
 # Predict Emissions Page
 elif selected == "Predict Emissions":
-    st.title('CO2 Emission Prediction using ML (XGBoost Regressor)')
+    st.title('CO2 Emission Prediction')
 
     # Maximum week value (should be derived from your training data)
     max_week_val = 52
@@ -347,7 +347,7 @@ elif selected == "Predict Emissions":
         m.add_child(folium.LatLngPopup())
         
         # Menampilkan peta di Streamlit
-        map_data = st_folium(m, height=318, use_column_width=True)
+        map_data = st_folium(m, height=316)
 
     with col2:
         # Menangkap koordinat klik dari map_data
