@@ -36,7 +36,7 @@ model_file = 'saved_model/emission_model.sav'
 with open(model_file, 'rb') as f:
     emission_model = pickle.load(f)
 
-# Menambahkan logo di bagian atas sidebar
+# Add logo at the top of the sidebar
 st.sidebar.image("image/pyboys.png", use_column_width=True)
 
 # Sidebar menu
@@ -305,7 +305,7 @@ elif selected == "Analytics":
 
     fig, ax = plt.subplots(figsize=(20, 7))
 
-    # Group by date and plot each year with a different color
+    # Group by date and plot year
     df.groupby(['date'])['emission'].sum().plot(kind='line', figsize=(20, 7), xlabel='Date')
 
     # Mark the COVID effect year (2020)
@@ -325,7 +325,7 @@ elif selected == "Analytics":
 elif selected == "Predict Emission":
     st.title('CO2 Emission Prediction')
 
-    # Maximum week value (should be derived from your training data)
+    # Maximum week value
     max_week_val = 52
 
     # Preprocessing functions
@@ -346,18 +346,18 @@ elif selected == "Predict Emission":
     col1, col2 = st.columns(2)
 
     with col1:
-        # Menambahkan peta interaktif
-        # Membuat peta
+        # Adding an interactive map
+        # Make a map
         m = folium.Map(location=[-1.9579, 29.9817], zoom_start=8)  # Lokasi default di Rwanda
         
-        # Menambahkan marker saat peta diklik
+        # Add a marker when the map is clicked
         m.add_child(folium.LatLngPopup())
         
-        # Menampilkan peta di Streamlit
+        # Showing a map in Streamlit
         map_data = st_folium(m, height=316)
 
     with col2:
-        # Menangkap koordinat klik dari map_data
+        # Capture click coordinates from map_data
         if map_data and map_data['last_clicked']:
             latitude = round(map_data['last_clicked']['lat'], 4)
             longitude = round(map_data['last_clicked']['lng'], 4)
