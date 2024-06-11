@@ -49,22 +49,6 @@ with st.sidebar:
         default_index=0,
     )
 
-    # Menambahkan teks di bagian bawah sidebar
-    st.markdown("""
-        <style>
-        .sidebar-footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
-        </style>
-        <div class="sidebar-footer">
-            <p>Developed by PyBoys Group</p>
-            <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
-        </div>
-    """, unsafe_allow_html=True)
-
 # Helper function for sine-cosine encoding
 def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
     latitude_sin = np.sin(np.radians(latitude))
