@@ -6,6 +6,9 @@ from streamlit_option_menu import option_menu
 from PIL import Image
 import base64
 import plotly.express as px
+import folium
+from streamlit_folium import st_folium
+from folium.plugins import MarkerCluster
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -337,15 +340,43 @@ elif selected == "Predict Emissions":
         return input_data
 
     # Getting the input data from the user
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
 
     with col1:
+        # Menambahkan peta interaktif
+        st.subheader('Interactive Map')
+        
+        # Data untuk peta
+        geo_mean_emission = df.groupby(["latitude", "longitude"]).emission.mean().reset_index()
+        
+        # Membuat peta
+        m = folium.Map(location=[-1.9403, 29.8739], zoom_start=8)  # Lokasi default di Rwanda
+        
+        # Menambahkan cluster marker
+        marker_cluster = MarkerCluster().add_to(m)
+        
+        for idx, row in geo_mean_emission.iterrows():
+            folium.Marker(
+                location=[row['latitude'], row['longitude']],
+                popup=f"Emission: {row['emission']}",
+                tooltip=f"Lat: {row['latitude']}, Lon: {row['longitude']}"
+            ).add_to(marker_cluster)
+        
+        # Menampilkan peta di Streamlit
+        st_data = st_folium(m, width=725)
+    
+        # Menampilkan informasi latitude dan longitude saat kursor diarahkan
+        if st_data['last_active_drawing']:
+            lat, lon = st_data['last_active_drawing']['geometry']['coordinates']
+            st.write(f"Latitude: {lat}, Longitude: {lon}")
+
+    with col2:
         latitude = st.text_input('Coordinate of Latitude')
-    with col2:
+    with col3:
         year = st.text_input('Year')
-    with col1:
-        longitude = st.text_input('Coordinate of Longitude')
     with col2:
+        longitude = st.text_input('Coordinate of Longitude')
+    with col3:
         week_no = st.text_input('Number of week')
 
     # Code for prediction
