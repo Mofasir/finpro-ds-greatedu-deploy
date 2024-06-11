@@ -347,7 +347,7 @@ elif selected == "Predict Emissions":
         m.add_child(folium.LatLngPopup())
         
         # Menampilkan peta di Streamlit
-        map_data = st_folium(m, height=316)
+        map_data = st_folium(m, height=320, width=280)
 
     with col2:
         # Menangkap koordinat klik dari map_data
