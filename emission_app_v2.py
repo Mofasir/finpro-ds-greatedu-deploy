@@ -336,14 +336,14 @@ elif selected == "Predict Emissions":
     df = load_data()
     
     # Getting the input data from the user
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         # Menambahkan peta interaktif
         st.subheader('Interactive Map')
         
         # Data untuk peta
-        geo_mean_emission = df.groupby(["latitude", "longitude"]).emission.mean().reset_index()
+        geo_loc = df.groupby(["latitude", "longitude"]).reset_index()
         
         # Membuat peta
         m = folium.Map(location=[-1.9403, 29.8739], zoom_start=8)  # Lokasi default di Rwanda
@@ -351,15 +351,14 @@ elif selected == "Predict Emissions":
         # Menambahkan cluster marker
         marker_cluster = MarkerCluster().add_to(m)
         
-        for idx, row in geo_mean_emission.iterrows():
+        for idx, row in geo_loc.iterrows():
             folium.Marker(
                 location=[row['latitude'], row['longitude']],
-                popup=f"Emission: {row['emission']}",
                 tooltip=f"Lat: {row['latitude']}, Lon: {row['longitude']}"
             ).add_to(marker_cluster)
         
         # Menampilkan peta di Streamlit
-        st_data = st_folium(m, width=725)
+        st_data = st_folium(m, heiht=500)
     
         # Menampilkan informasi latitude dan longitude saat kursor diarahkan
         if st_data['last_active_drawing']:
@@ -368,11 +367,11 @@ elif selected == "Predict Emissions":
 
     with col2:
         latitude = st.text_input('Coordinate of Latitude')
-    with col3:
-        year = st.text_input('Year')
     with col2:
         longitude = st.text_input('Coordinate of Longitude')
-    with col3:
+    with col2:
+        year = st.text_input('Year')
+    with col2:
         week_no = st.text_input('Number of week')
 
     # Code for prediction
