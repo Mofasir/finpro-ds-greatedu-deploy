@@ -78,41 +78,6 @@ buffered = io.BytesIO()
 image.save(buffered, format="PNG")
 img_logo = base64.b64encode(buffered.getvalue()).decode()
 
-# Load the image project leader
-image_path = os.path.join(working_dir, "image/rama.png")
-image = Image.open(image_path)
-buffered = io.BytesIO()
-image.save(buffered, format="PNG")
-img_pl = base64.b64encode(buffered.getvalue()).decode()
-
-# Load the image analyst
-image_path = os.path.join(working_dir, "image/rahuldi.png")
-image = Image.open(image_path)
-buffered = io.BytesIO()
-image.save(buffered, format="PNG")
-img_an = base64.b64encode(buffered.getvalue()).decode()
-
-# Load the image visualizer
-image_path = os.path.join(working_dir, "image/amin.png")
-image = Image.open(image_path)
-buffered = io.BytesIO()
-image.save(buffered, format="PNG")
-img_vi = base64.b64encode(buffered.getvalue()).decode()
-
-# Load the image modeller1
-image_path = os.path.join(working_dir, "image/fajri.png")
-image = Image.open(image_path)
-buffered = io.BytesIO()
-image.save(buffered, format="PNG")
-img_mo1 = base64.b64encode(buffered.getvalue()).decode()
-
-# Load the image modeller2
-image_path = os.path.join(working_dir, "image/faikar.png")
-image = Image.open(image_path)
-buffered = io.BytesIO()
-image.save(buffered, format="PNG")
-img_mo2 = base64.b64encode(buffered.getvalue()).decode()
-
 st.markdown(
     f"""
     <style>
@@ -405,15 +370,15 @@ elif selected == "About Us":
     col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
-        st.image('img_pl', caption='rama', use_column_width=True)
+        st.image('image/rama.png', caption='rama', use_column_width=True)
     with col2:
-        st.image('img_an', caption='rahuldi', use_column_width=True)
+        st.image('image/rahuldi.png', caption='rahuldi', use_column_width=True)
     with col3:
-        st.image('img_vi', caption='amin', use_column_width=True)
+        st.image('image/amin.png', caption='amin', use_column_width=True)
     with col4:
-        st.image('img_mo1', caption='fajri', use_column_width=True)
+        st.image('image/fajri.png', caption='fajri', use_column_width=True)
     with col5:
-        st.image('img_mo2', caption='faikar', use_column_width=True)
+        st.image('image/faikar.png', caption='faikar', use_column_width=True)
     
 # Footer
 st.markdown("""
