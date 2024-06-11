@@ -36,6 +36,8 @@ model_file = 'saved_model/emission_model.sav'
 with open(model_file, 'rb') as f:
     emission_model = pickle.load(f)
 
+# Menambahkan logo di bagian atas sidebar
+st.sidebar.image("image/pyboys.png", use_column_width=True)
 
 # Sidebar menu
 with st.sidebar:
@@ -46,6 +48,14 @@ with st.sidebar:
         menu_icon="cast",
         default_index=0,
     )
+
+# Menambahkan teks di bagian bawah sidebar
+    st.markdown("""
+        <div style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
+            <p>Developed by PyBoys Group</p>
+            <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # Helper function for sine-cosine encoding
 def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
