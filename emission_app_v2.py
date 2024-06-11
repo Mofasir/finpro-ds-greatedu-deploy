@@ -50,12 +50,12 @@ with st.sidebar:
     )
 
     # Menambahkan teks di bagian bawah sidebar
-        st.markdown("""
-            <div style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
-                <p>Developed by PyBoys Group</p>
-                <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
-            </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+        <div style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
+            <p>Developed by PyBoys Group</p>
+            <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # Helper function for sine-cosine encoding
 def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
@@ -393,7 +393,7 @@ elif selected == "Predict Emissions":
 # About Us Page
 elif selected == "About Us":
     st.title("About Us")
-    st.image("image/pyboys.png")
+    st.image("image/pyboys.png", use_column_width=False)
     st.markdown("""
     **Our Mentor: Kak Dandy Arif Rahman**
     """)
