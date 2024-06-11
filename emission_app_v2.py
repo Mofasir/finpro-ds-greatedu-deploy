@@ -147,14 +147,19 @@ if selected == "Home":
                 Meskipun Eropa dan Amerika Utara memiliki sistem ekstensif untuk memantau emisi karbon di lapangan, hanya sedikit sistem yang tersedia di Afrika.
                 </p>
                 <p style="text-align: justify;">
-                    <span><b>Emisi CO2 yang Rendah di Rwanda </b></span><br>
-                    Negara dengan emisi CO2 yang rendah, dengan emisi per kapita 0,4 ton CO2 pada tahun 2020.<br>
-                    <span><b>Target Emisi Nol Bersih 2050</b></span><br>
-                    Negara Rwanda telah berkomitmen untuk mencapai target emisi nol bersih pada tahun 2050.<br>
-                    <span><b>Tantangan di Rwanda</b></span><br>
-                    Pelepasan gas karbon dioksida ke atmosfer sebagai hasil dari berbagai aktivitas manusia dan alam.<br>
+                    <span><b>Latar Belakang Emisi CO2 Rwanda</b></span><br>
+                    Rwanda termasuk negara dengan emisi CO2 yang rendah, dengan emisi per kapita 0,4 ton CO2 pada tahun 2020. Jumlah ini jauh di bawah rata-rata global 4,8 ton CO2 per kapita.<br>
+                    <br>
+                    <span><b>Upaya Rwanda untuk Mengurangi Emisi CO2</b></span><br>
+                    Rwanda telah berkomitmen untuk mencapai target emisi nol bersih pada tahun 2050. Untuk mencapai target ini, Rwanda telah mengambil beberapa langkah, seperti:<br>
+                    - Meningkatkan reboisasi hutan<br>
+                    - Beralih ke transportasi yang lebih ramah lingkungan<br>
+                    <br>
+                    <span><b>Tantangan yang Dihadapi Rwanda</b></span><br>
+                    Rwanda masih menghadapi beberapa tantangan dalam upaya pengurangan emisi CO2, di antaranya pelepasan gas karbon dioksida ke atmosfer sebagai hasil dari berbagai aktivitas manusia dan alam.<br>
+                    <br>
                     <span><b>Penanggulangan Emisi CO2</b></span><br>
-                    Melacak dan memahami sumber emisi CO2 serta mencari solusi untuk mengurangi emisi CO2.
+                    Dilakukan dengan melacak dan memahami sumber emisi CO2 serta mencari solusi untuk mengurangi emisi CO2.
                 </p>
                 <div style='display: flex; justify-content: space-between; margin-bottom: 20px;'>
                   <div class="objective">
