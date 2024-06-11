@@ -341,17 +341,24 @@ elif selected == "Predict Emissions":
     with col1:
         # Menambahkan peta interaktif
         # Membuat peta
-        m = folium.Map(location=[-1.9403, 29.8739], zoom_start=8)  # Lokasi default di Rwanda
+        m = folium.Map(location=[-1.9403, 29.8739], zoom_start=6)  # Lokasi default di Rwanda
         
         # Menambahkan marker saat peta diklik
         m.add_child(folium.LatLngPopup())
         
         # Menampilkan peta di Streamlit
-        st_folium(m, height=500)
+        map_data = st_folium(m, height=300)
 
     with col2:
-        latitude = st.text_input('Coordinate of Latitude')
-        longitude = st.text_input('Coordinate of Longitude')
+        # Menangkap koordinat klik dari map_data
+        if map_data and map_data['last_clicked']:
+            latitude = map_data['last_clicked']['lat']
+            longitude = map_data['last_clicked']['lng']
+        else:
+            latitude = ""
+            longitude = ""
+        latitude = st.text_input('Coordinate of Latitude', value=latitude)
+        longitude = st.text_input('Coordinate of Longitude', value=longitude)
         year = st.text_input('Year')
         week_no = st.text_input('Number of week')
 
