@@ -340,30 +340,14 @@ elif selected == "Predict Emissions":
 
     with col1:
         # Menambahkan peta interaktif
-        st.subheader('Interactive Map')
-        
-        # Data untuk peta
-        geo_loc = df.groupby(["latitude", "longitude"]).reset_index()
-        
         # Membuat peta
         m = folium.Map(location=[-1.9403, 29.8739], zoom_start=8)  # Lokasi default di Rwanda
         
-        # Menambahkan cluster marker
-        marker_cluster = MarkerCluster().add_to(m)
-        
-        for idx, row in geo_loc.iterrows():
-            folium.Marker(
-                location=[row['latitude'], row['longitude']],
-                tooltip=f"Lat: {row['latitude']}, Lon: {row['longitude']}"
-            ).add_to(marker_cluster)
+        # Menambahkan marker saat peta diklik
+        m.add_child(folium.LatLngPopup())
         
         # Menampilkan peta di Streamlit
-        st_data = st_folium(m, heiht=500)
-    
-        # Menampilkan informasi latitude dan longitude saat kursor diarahkan
-        if st_data['last_active_drawing']:
-            lat, lon = st_data['last_active_drawing']['geometry']['coordinates']
-            st.write(f"Latitude: {lat}, Longitude: {lon}")
+        st_folium(m, heiht=500)
 
     with col2:
         latitude = st.text_input('Coordinate of Latitude')
