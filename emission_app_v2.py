@@ -18,7 +18,7 @@ st.set_page_config(
     page_title="CO2 Emission Predict App",
     layout="wide",
     page_icon="🌍",
-    theme="light",
+    base="light",
     primaryColor="#9A8967",
     backgroundColor="#ffffff",
     secondaryBackgroundColor="#CBBA99",
