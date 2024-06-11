@@ -321,8 +321,8 @@ elif selected == "Analytics":
     # Display the plot in Streamlit
     st.pyplot(fig)
 
-# Predict Emissions Page
-elif selected == "Predict Emissions":
+# Predict Emission Page
+elif selected == "Predict Emission":
     st.title('CO2 Emission Prediction')
 
     # Maximum week value (should be derived from your training data)
