@@ -393,7 +393,7 @@ elif selected == "Predict Emissions":
 # About Us Page
 elif selected == "About Us":
     st.title("About Us")
-    st.image("image/pyboys.png", use_column_width=False)
+    st.image("image/pyboys.png", width=250)
     st.markdown("""
     **Our Mentor: Kak Dandy Arif Rahman**
     """)
