@@ -31,12 +31,6 @@ def load_data():
   data = pd.read_csv(dataset_path)
   return data
 
-# Dataset Describe
-def load_data1():
-  dataset_path1 = os.path.join(working_dir, "datasets/train_desc.csv")
-  data = pd.read_csv(dataset_path1)
-  return data
-
 # Load the model
 model_file = 'saved_model/emission_model.sav'
 with open(model_file, 'rb') as f:
@@ -339,6 +333,8 @@ elif selected == "Predict Emissions":
         input_data = np.concatenate(([year_int], encoded_input)).reshape(1, -1)
         return input_data
 
+    df = load_data()
+    
     # Getting the input data from the user
     col1, col2, col3 = st.columns(3)
 
