@@ -49,13 +49,13 @@ with st.sidebar:
         default_index=0,
     )
 
-# Menambahkan teks di bagian bawah sidebar
-    st.markdown("""
-        <div style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
-            <p>Developed by PyBoys Group</p>
-            <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
-        </div>
-    """, unsafe_allow_html=True)
+    # Menambahkan teks di bagian bawah sidebar
+        st.markdown("""
+            <div style='position: fixed; bottom: 0; width: 100%; text-align: center;'>
+                <p>Developed by PyBoys Group</p>
+                <p>&copy; 2024 GreatEdu | SIB Cycle 6</p>
+            </div>
+        """, unsafe_allow_html=True)
 
 # Helper function for sine-cosine encoding
 def sin_cos_encode(latitude, longitude, week_no, month, max_week_val):
@@ -393,9 +393,7 @@ elif selected == "Predict Emissions":
 # About Us Page
 elif selected == "About Us":
     st.title("About Us")
-    st.markdown("""
-    **PyBoys Group**
-    """)
+    st.image("image/pyboys.png")
     st.markdown("""
     **Our Mentor: Kak Dandy Arif Rahman**
     """)
@@ -419,8 +417,8 @@ st.markdown("""
     <hr style="border-top: 1px solid #ddd; margin: 10px 0;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
         <div style="display: flex; align-items: center; font-size: 15px; color: #4C4D50;">
-            <i class="far fa-copyright" style="font-size: 15px; margin-right: 5px;"></i>
-            2024 <span style="margin-left: 2px">PyBoys Group | Data Scientist in GreatEdu | SIB Cycle 6</span>. All Rights Reserved
+            <i class="far fa-copyright" style="margin-right: 4px;"></i>
+            2024 <span style="margin-left: 2px">PyBoys Group | Data Science | GreatEdu | SIB Cycle 6</span>. All Rights Reserved
         </div>
     </div>
 </div>
