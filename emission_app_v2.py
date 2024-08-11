@@ -348,7 +348,7 @@ elif selected == "Predict Emission":
     with col1:
         # Adding an interactive map
         # Make a map
-        m = folium.Map(location=[-1.9579, 29.9817], zoom_start=8)  # Lokasi default di Rwanda
+        m = folium.Map(location=[-1.9579, 29.9817], zoom_start=8)  # Default location in Rwanda
         
         # Add a marker when the map is clicked
         m.add_child(folium.LatLngPopup())
